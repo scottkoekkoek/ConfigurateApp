@@ -24,13 +24,19 @@
 
 #include <QBluetoothUuid>
 
+#include<QDebug>
+
 BluetoothDeviceInfo::BluetoothDeviceInfo()
 {
+    selected_ = false;
+    //outOfRange_ = false;
 }
 
 BluetoothDeviceInfo::BluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo)
 {
     m_deviceInfo = deviceInfo;
+    selected_ = false;
+    //outOfRange_ = false;
 }
 
 QString BluetoothDeviceInfo::address() const
@@ -53,6 +59,42 @@ bool BluetoothDeviceInfo::isLowEnergy() const
 {
     return m_deviceInfo.coreConfigurations() & QBluetoothDeviceInfo::LowEnergyCoreConfiguration;
 }
+
+bool BluetoothDeviceInfo::selected()
+{
+    qDebug() << "Status: " << selected_;
+    return selected_;
+    emit selectedChanged();
+}
+
+void BluetoothDeviceInfo::setSelected(bool selected)
+{
+    qDebug() << "Oud: " << selected_ ;
+    selected_ = selected;
+    qDebug() << "Nieuw: " << selected_ ;
+    emit selectedChanged();
+}
+
+/*void BluetoothDeviceInfo::setIndexOutOfRange(int index)
+{
+    qDebug() << "Test1";
+    if (index == 0) {
+        outOfRange_ = true;
+        qDebug() << "Out of Range: " << outOfRange_;
+    }
+    else {
+        outOfRange_ = false;
+        qDebug() << "Out of Range: " << outOfRange_;
+    }
+    emit outOfRangeChanged();
+}
+
+bool BluetoothDeviceInfo::outOfRange()
+{
+    qDebug() << "Test2";
+    return outOfRange_;
+    emit outOfRangeChanged();
+}*/
 
 QBluetoothDeviceInfo BluetoothDeviceInfo::getBluetoothDeviceInfo() const
 {

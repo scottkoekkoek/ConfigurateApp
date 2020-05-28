@@ -21,6 +21,9 @@ ApplicationWindow {
     property int margins: 6
     property int largeFont: 20
     property int smallFont: 12
+    property string sidd;
+    property string password;
+    property bool busy: false
 
     BluetoothDiscovery {
         id: discovery
@@ -54,19 +57,67 @@ ApplicationWindow {
     Connections {
         target: networkManager.manager
         onInitializedChanged: {
+            print("Start onInitializedChanged");
             print("initialized changed", networkManager.manager.initialized)
-
+            // Als ik bij volgende device ben, dan zet wireless van BluetoothDeviceInfo
+            // Als
+            print("Busy: ", busy);
             if (networkManager.manager.initialized) {
-                swipeView.currentIndex++;
+                if(busy) {
+                print("Verbonden!");
+                print("AccesPoint Avaiable: ", networkManager.manager.accessPointModeAvailable);
+                print("SSID: ", ssidTextField.text);
+                print("Password: ", passwordTextField.text);
+                networkManager.manager.connectWirelessNetwork(ssidTextField.text, passwordTextField.text);
+                print("Ingevoerd ssid");
+                }
+                else{
+                    print("Volgende 1");
+                    swipeView.currentIndex++;
+                }
             } else {
-                swipeView.currentIndex = 0;
+                if (busy){
+                    print("Connectie is gesloten");
+                    print("Index ervoor: ",networkManager.deviceIndex);
+                    networkManager.deviceIndex = networkManager.deviceIndex + 1;
+                    if (discovery.deviceInfos.count <= networkManager.deviceIndex){
+                        print("Klaar! uit init");
+                        busy = false
+                        print("Volgende 2");
+                        swipeView.currentIndex++;
+                    }
+                    print("Index erna: ",networkManager.deviceIndex);
+                    networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
+                    networkManager.connectDevice();
+                }
+                else{
+                    swipeView.currentIndex = 0;
+                }
             }
         }
 
         onConnectedChanged: {
+            print("Start onConnectedChanged")
             print("connectedChanged", networkManager.manager.connected)
             if (!networkManager.manager.connected) {
-                swipeView.currentIndex = 0;
+                if (swipeView.currentIndex == 5){
+                    busy = true;
+                    /*networkManager.deviceIndex = networkManager.deviceIndex + 1;
+                    print("Voor de while loop: ", discovery.deviceInfos.get(networkManager.deviceIndex).selected);
+                    while (!discovery.deviceInfos.get(networkManager.deviceIndex).selected) {
+                        networkManager.deviceIndex = networkManager.deviceIndex + 1;
+                        print("Index daarna: ",networkManager.deviceIndex);
+                        //print("Count: ", discovery.deviceInfos.count);
+
+                        //print("Einde van de while loop: ", discovery.deviceInfos.get(networkManager.deviceIndex).selected);
+                    }
+                    print("Gevonden!");
+                    networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
+                    networkManager.connectDevice();*/
+                }
+                else{
+                    swipeView.currentIndex = 0;
+                }
             }
         }
 
@@ -74,6 +125,7 @@ ApplicationWindow {
             print("Network status changed:", networkManager.manager.networkStatus)
             if (swipeView.currentItem === connectingToWiFiView) {
                 if (networkManager.manager.networkStatus === WirelessSetupManager.NetworkStatusGlobal) {
+                    print("Volgende 3");
                     swipeView.currentIndex++;
                 } else {
                     print("UNHANDLED Network status change:", networkManager.manager.networkStatus  )
@@ -85,6 +137,7 @@ ApplicationWindow {
             print("Wireless status changed:", networkManager.manager.networkStatus)
             if (swipeView.currentItem === connectingToWiFiView) {
                 if (networkManager.manager.wirelessStatus === WirelessSetupManager.WirelessStatusActivated) {
+                    print("Volgende 4");
                     swipeView.currentIndex++;
                 }
                 if (networkManager.manager.wirelessStatus === WirelessSetupManager.WirelessStatusFailed) {
@@ -127,11 +180,9 @@ ApplicationWindow {
 
             backButtonVisible: swipeView.currentIndex === 4
 
-            onHelpClicked: pageStack.push(Qt.resolvedUrl("components/HelpPage.qml"))
-            onBackClicked: {
-                d.currentAP = null
-                swipeView.currentIndex--
-            }
+            nextButtonVisible: swipeView.currentIndex === 1
+
+            onHelpClicked: swipeView.currentIndex++
 
             step: {
                 switch (swipeView.currentIndex) {
@@ -152,12 +203,14 @@ ApplicationWindow {
                     return 4;
                 case 5:
                     if (networkManager.manager.wirelessStatus < WirelessSetupManager.WirelessStatusConfig) {
+                        print("hoi");
                         return 5;
                     }
-//                    if (networkManager.manager.wirelessStatus < WirelessSetupManager.WirelessStatusIpConfig) {
-                        return 6;
-//                    }
-//                    return 7;
+                    print("Connectie gaat sluiten");
+                    busy = true;
+                    networkManager.manager.disconnectDevice();
+
+                    return 5;
                 case 6:
                     return 8;
                 }
@@ -187,18 +240,17 @@ ApplicationWindow {
                     width: swipeView.width
                     model: discovery.deviceInfos
                     clip: true
-
+                    ColorIcon {
+                        Layout.preferredHeight: app.iconSize
+                        Layout.preferredWidth: app.iconSize
+                        name: "../images/next.svg"
+                    }
                     delegate: BerryLanItemDelegate {
                         width: parent.width
                         text: name
                         iconSource: "../images/bluetooth.svg"
-
-                        onClicked: {
-                            networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(index);
-                            networkManager.connectDevice();
-                            swipeView.currentIndex++;
-                        }
                     }
+
                 }
 
                 // 2
@@ -238,7 +290,7 @@ ApplicationWindow {
                             onClicked: {
                                 print("Connect to ", model.ssid, " --> ", model.macAddress)
                                 d.currentAP = accessPointsProxy.get(index);
-
+                                ssidTextField.text = d.currentAP.ssid;
                                 if (!d.currentAP.isProtected) {
                                     networkManager.manager.connectWirelessNetwork(d.currentAP.ssid)
                                     swipeView.currentIndex++;
@@ -323,6 +375,8 @@ ApplicationWindow {
                                 if (d.currentAP) {
                                     connectingToWiFiView.text = qsTr("Connecting the Raspberry Pi to %1").arg(d.currentAP.ssid);
                                     networkManager.manager.connectWirelessNetwork(d.currentAP.ssid, passwordTextField.text)
+                                    sidd = d.currentAP.ssid;
+                                    password = passwordTextField.text;
                                 } else {
                                     connectingToWiFiView.text = qsTr("Opening access point \"%1\" on the Raspberry Pi").arg(ssidTextField.text);
                                     networkManager.manager.startAccessPoint(ssidTextField.text, passwordTextField.text)
@@ -360,9 +414,7 @@ ApplicationWindow {
                         Label {
                             Layout.fillWidth: true
                             Layout.margins: app.margins
-                            text: d.accessPointMode
-                                  ? qsTr("Access point name: %1").arg(networkManager.manager.currentConnection.ssid)
-                                  : networkManager.manager.currentConnection ? qsTr("IP Address: %1").arg(networkManager.manager.currentConnection.hostAddress) : ""
+                            text: qsTr("All the Wamms are configurated!")
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                             font.pixelSize: app.largeFont
                             font.bold: true
@@ -392,7 +444,7 @@ ApplicationWindow {
                                 width: parent.width
                                 spacing: app.margins * 4
                                 Label {
-                                    text: qsTr("Thanks for using BerryLan!")
+                                    text: qsTr("Thanks for using the app!")
                                     font.pixelSize: app.largeFont
                                     Layout.fillWidth: true
                                     wrapMode: Text.WordWrap

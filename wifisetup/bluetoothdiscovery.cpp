@@ -174,7 +174,7 @@ void BluetoothDiscovery::deviceDiscovered(const QBluetoothDeviceInfo &deviceInfo
 
     qDebug() << "BluetoothDiscovery: [+]" << deviceInformation->name() << "(" << deviceInformation->address() << ")" << (isLowEnergy ? "LE" : "");
 
-    if (!isLowEnergy || deviceInformation->name().isEmpty()) {
+    if (!isLowEnergy || deviceInformation->name().isEmpty() || !deviceInformation->name().startsWith("WAMM")) {
         delete deviceInformation;
         return;
     }

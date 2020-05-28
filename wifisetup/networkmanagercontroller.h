@@ -34,12 +34,16 @@ class NetworkManagerController : public QObject
     Q_OBJECT
     Q_PROPERTY(BluetoothDeviceInfo* bluetoothDeviceInfo READ bluetoothDeviceInfo WRITE setBluetoothDeviceInfo)
     Q_PROPERTY(WirelessSetupManager *manager READ manager NOTIFY managerChanged)
+    Q_PROPERTY(int deviceIndex READ deviceIndex WRITE setDeviceIndex NOTIFY deviceIndexChanged)
 
 public:
     explicit NetworkManagerController(QObject *parent = nullptr);
 
     BluetoothDeviceInfo* bluetoothDeviceInfo() const;
     void setBluetoothDeviceInfo(BluetoothDeviceInfo* bluetoothDeviceInfo);
+
+    int deviceIndex() const;
+    void setDeviceIndex(int index);
 
     WirelessSetupManager *manager();
 
@@ -50,8 +54,11 @@ private:
 
     WirelessSetupManager *m_wirelessSetupManager = nullptr;
 
+    int deviceIndex_;
+
 signals:
     void managerChanged();
+    void deviceIndexChanged();
     void nameChanged();
     void bluetoothDeviceInfoChanged();
 

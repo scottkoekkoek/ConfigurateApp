@@ -26,7 +26,6 @@
 
 BluetoothDeviceInfos::BluetoothDeviceInfos(QObject *parent) : QAbstractListModel(parent)
 {
-
 }
 
 QList<BluetoothDeviceInfo *> BluetoothDeviceInfos::deviceInfos()
@@ -52,6 +51,8 @@ QVariant BluetoothDeviceInfos::data(const QModelIndex &index, int role) const
         return deviceInfo->address();
     } else if (role == BluetoothDeviceInfoRoleLe) {
         return deviceInfo->isLowEnergy();
+    } else if(role == BluetoothDeviceInfoRoleSelected){
+        return deviceInfo->selected();
     }
 
     return QVariant();
@@ -68,6 +69,30 @@ BluetoothDeviceInfo *BluetoothDeviceInfos::get(int index) const
         return Q_NULLPTR;
 
     return m_deviceInfos.at(index);
+}
+
+BluetoothDeviceInfo *BluetoothDeviceInfos::set(int index, bool selected)
+{
+    qDebug() << "Index: " << index;
+    qDebug() << "Selected: " << selected;
+    if (index >= m_deviceInfos.count() || index < 0) {
+        qDebug() << "Stap 1";
+        return Q_NULLPTR;
+    }
+    /*else {
+        if (selected == false) {
+            qDebug() << "Stap 2";
+            selected = true;
+        }
+        else if (selected == true) {
+            qDebug() << "Stap 3";
+            selected = false;
+        }
+    }
+    qDebug() << "Set: " << selected;*/
+    BluetoothDeviceInfo *bdi = m_deviceInfos.at(index);
+    bdi->setSelected(selected);
+    return bdi;
 }
 
 void BluetoothDeviceInfos::addBluetoothDeviceInfo(BluetoothDeviceInfo *deviceInfo)
@@ -95,5 +120,6 @@ QHash<int, QByteArray> BluetoothDeviceInfos::roleNames() const
     roles[BluetoothDeviceInfoRoleName] = "name";
     roles[BluetoothDeviceInfoRoleAddress] = "address";
     roles[BluetoothDeviceInfoRoleLe] = "lowEnergy";
+    roles[BluetoothDeviceInfoRoleSelected] = "Selected";
     return roles;
 }

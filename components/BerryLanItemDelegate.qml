@@ -34,11 +34,14 @@ ItemDelegate {
                 font.pixelSize: app.largeFont
                 elide: Text.ElideRight
             }
-
-            ColorIcon {
-                Layout.preferredHeight: app.iconSize
-                Layout.preferredWidth: app.iconSize
-                name: "../images/next.svg"
+            CheckBox {
+                id: checkbox
+                visible: swipeView.currentIndex == 1
+                onClicked:{
+                    print("Voor set: ",discovery.deviceInfos.get(index).selected)
+                    discovery.deviceInfos.set(index, checkState)
+                    print("Na set: ", discovery.deviceInfos.get(index).selected)
+                }
             }
         }
 

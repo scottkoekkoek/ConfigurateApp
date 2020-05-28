@@ -36,7 +36,8 @@ public:
     enum BluetoothDeviceInfoRole {
         BluetoothDeviceInfoRoleName = Qt::DisplayRole,
         BluetoothDeviceInfoRoleAddress,
-        BluetoothDeviceInfoRoleLe
+        BluetoothDeviceInfoRoleLe,
+        BluetoothDeviceInfoRoleSelected
     };
 
     explicit BluetoothDeviceInfos(QObject *parent = nullptr);
@@ -48,6 +49,7 @@ public:
 
     int count() const;
     Q_INVOKABLE BluetoothDeviceInfo *get(int index) const;
+    Q_INVOKABLE BluetoothDeviceInfo *set(int index, bool selected);
 
     void addBluetoothDeviceInfo(BluetoothDeviceInfo *deviceInfo);
     Q_INVOKABLE void clearModel();
@@ -60,6 +62,7 @@ protected:
 
 private:
     QList<BluetoothDeviceInfo *> m_deviceInfos;
+
 };
 
 #endif // BLUETOOTHDEVICEINFOS_H

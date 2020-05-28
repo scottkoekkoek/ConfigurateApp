@@ -8,6 +8,8 @@ Page {
         text: qsTr("About BerryLan")
         backButtonVisible: true
         onBackClicked: pageStack.pop()
+        nextButtonVisible: true
+        onNextClicked: pageStack.pop()
     }
 
     WebView {

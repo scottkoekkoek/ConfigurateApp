@@ -27,6 +27,9 @@
 
 #include <QJsonDocument>
 
+/*******************************************************************************************************************/
+//Universally unique identifier wordt gedefineerd
+
 static QBluetoothUuid wifiServiceUuid =                 QBluetoothUuid(QUuid("e081fec0-f757-4449-b9c9-bfa83133f7fc"));
 static QBluetoothUuid wifiCommanderCharacteristicUuid = QBluetoothUuid(QUuid("e081fec1-f757-4449-b9c9-bfa83133f7fc"));
 static QBluetoothUuid wifiResponseCharacteristicUuid =  QBluetoothUuid(QUuid("e081fec2-f757-4449-b9c9-bfa83133f7fc"));
@@ -43,6 +46,8 @@ static QBluetoothUuid wirelessEnabledCharacteristicUuid =   QBluetoothUuid(QUuid
 static QBluetoothUuid systemServiceUuid =                 QBluetoothUuid(QUuid("e081fed0-f757-4449-b9c9-bfa83133f7fc"));
 static QBluetoothUuid systemCommanderCharacteristicUuid = QBluetoothUuid(QUuid("e081fed1-f757-4449-b9c9-bfa83133f7fc"));
 static QBluetoothUuid systemResponseCharacteristicUuid =  QBluetoothUuid(QUuid("e081fed2-f757-4449-b9c9-bfa83133f7fc"));
+
+/*******************************************************************************************************************/
 
 WirelessSetupManager::WirelessSetupManager(const QBluetoothDeviceInfo &deviceInfo, QObject *parent) :
     BluetoothDevice(deviceInfo, parent),
@@ -360,11 +365,13 @@ void WirelessSetupManager::checkInitialized()
     bool initialized = false;
 
     if (m_systemService) {
+        qDebug() << "Service juist";
         initialized = m_deviceInformationService->state() == QLowEnergyService::ServiceDiscovered
                 && m_netwokService->state() == QLowEnergyService::ServiceDiscovered
                 && m_wifiService->state() == QLowEnergyService::ServiceDiscovered
                 && m_systemService->state() == QLowEnergyService::ServiceDiscovered;
     } else {
+        qDebug() << "Service anders";
         initialized = m_deviceInformationService->state() == QLowEnergyService::ServiceDiscovered
                 && m_netwokService->state() == QLowEnergyService::ServiceDiscovered
                 && m_wifiService->state() == QLowEnergyService::ServiceDiscovered;
@@ -456,7 +463,6 @@ void WirelessSetupManager::setNetworkingEnabled(bool networkingEnabled)
 
     if (!m_networkingEnabled)
         m_accessPoints->clearModel();
-
 }
 
 void WirelessSetupManager::setWirelessEnabled(bool wirelessEnabled)
@@ -470,7 +476,6 @@ void WirelessSetupManager::setWirelessEnabled(bool wirelessEnabled)
 
     if (!m_wirelessEnabled)
         m_accessPoints->clearModel();
-
 }
 
 void WirelessSetupManager::streamData(const QVariantMap &request)
@@ -752,7 +757,6 @@ void WirelessSetupManager::onServiceDiscoveryFinished()
 
 void WirelessSetupManager::onDeviceInformationStateChanged(const QLowEnergyService::ServiceState &state)
 {
-
     if (state != QLowEnergyService::ServiceDiscovered)
         return;
 
@@ -936,6 +940,7 @@ void WirelessSetupManager::onNetworkServiceReadFinished(const QLowEnergyCharacte
 
 void WirelessSetupManager::onWifiServiceStateChanged(const QLowEnergyService::ServiceState &state)
 {
+    qDebug() << "State Hier: " << state;
     if (state != QLowEnergyService::ServiceDiscovered)
         return;
 

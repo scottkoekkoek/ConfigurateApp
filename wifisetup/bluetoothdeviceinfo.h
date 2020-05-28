@@ -33,6 +33,8 @@ class BluetoothDeviceInfo : public QObject
     Q_OBJECT
     Q_PROPERTY(QString name READ name NOTIFY deviceChanged)
     Q_PROPERTY(QString address READ address NOTIFY deviceChanged)
+    Q_PROPERTY(bool selected READ selected WRITE setSelected NOTIFY selectedChanged)
+    //Q_PROPERTY(bool outOfRange READ outOfRange WRITE setIndexOutOfRange NOTIFY outOfRangeChanged)
 
 public:
     BluetoothDeviceInfo();
@@ -41,16 +43,23 @@ public:
     QString address() const;
     QString name() const;
     bool isLowEnergy() const;
+    bool selected();
+    void setSelected(bool selected);
+    //bool outOfRange();
+    //void setIndexOutOfRange(int index);
 
     QBluetoothDeviceInfo getBluetoothDeviceInfo() const;
     void setBluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo);
 
 signals:
     void deviceChanged();
+    void selectedChanged();
+    //void outOfRangeChanged();
 
 private:
     QBluetoothDeviceInfo m_deviceInfo;
-
+    bool selected_;
+    //bool outOfRange_ = false;
 };
 
 #endif // BLUETOOTHDEVICEINFO_H

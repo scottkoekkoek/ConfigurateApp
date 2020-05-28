@@ -21,10 +21,22 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include "networkmanagercontroller.h"
+#include "unistd.h"
 
-NetworkManagerController::NetworkManagerController(QObject *parent) : QObject(parent)
+NetworkManagerController::NetworkManagerController(QObject *parent) : QObject(parent), deviceIndex_{0}
 {
 
+}
+
+int NetworkManagerController::deviceIndex() const
+{
+    return deviceIndex_;
+}
+
+void NetworkManagerController::setDeviceIndex(int index)
+{
+    deviceIndex_ = index;
+    emit deviceIndexChanged();
 }
 
 BluetoothDeviceInfo *NetworkManagerController::bluetoothDeviceInfo() const
@@ -47,6 +59,7 @@ WirelessSetupManager *NetworkManagerController::manager()
 
 void NetworkManagerController::connectDevice()
 {
+    qDebug() << "We gaan connecten";
     if (!m_bluetoothDeviceInfo) {
         qWarning() << "Can't connect to device. bluetoothDeviceInfo not set.";
         return;
@@ -65,6 +78,7 @@ void NetworkManagerController::connectDevice()
 
     m_wirelessSetupManager = new WirelessSetupManager(m_bluetoothDeviceInfo->getBluetoothDeviceInfo(), this);
     emit managerChanged();
-
+    sleep(2);
     m_wirelessSetupManager->connectDevice();
+    //sleep(10);
 }

@@ -21,6 +21,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include "bluetoothdevice.h"
+#include "unistd.h"
 
 BluetoothDevice::BluetoothDevice(const QBluetoothDeviceInfo &deviceInfo, QObject *parent) :
     QObject(parent),
@@ -81,7 +82,11 @@ void BluetoothDevice::connectDevice()
 
 void BluetoothDevice::disconnectDevice()
 {
+    qDebug() << "We gaan disconnecten";
+    sleep(2);
     m_controller->disconnectFromDevice();
+    sleep(5);
+    qDebug() << "Verbroken";
 }
 
 void BluetoothDevice::setConnected(const bool &connected)
@@ -117,7 +122,11 @@ void BluetoothDevice::onDisconnected()
 void BluetoothDevice::onDeviceError(const QLowEnergyController::Error &error)
 {
     qWarning() << "BluetoothDevice: Error" << name() << addressString() << ": " << error << m_controller->errorString();
-    setConnected(false);
+
+    disconnectDevice();
+    qDebug() << "QLoweEnergyController reconnecting...";
+    m_controller->connectToDevice();
+    //setConnected(false);
 }
 
 void BluetoothDevice::onDeviceStateChanged(const QLowEnergyController::ControllerState &state)
