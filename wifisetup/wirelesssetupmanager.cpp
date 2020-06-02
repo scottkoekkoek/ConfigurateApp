@@ -903,9 +903,9 @@ void WirelessSetupManager::onNetworkServiceCharacteristicChanged(const QLowEnerg
             QJsonParseError error;
             QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
             if (error.error != QJsonParseError::NoError) {
-                qWarning() << "Got invalid json object" << m_inputDataStream;
-                m_inputDataStream.clear();
-                m_readingResponse = false;
+                qWarning() << "Got invalid json object3" << m_inputDataStream;
+                //m_inputDataStream.clear();
+                //m_readingResponse = false;
                 return;
             }
 
@@ -1012,9 +1012,9 @@ void WirelessSetupManager::onWifiServiceCharacteristicChanged(const QLowEnergyCh
             QJsonParseError error;
             QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
             if (error.error != QJsonParseError::NoError) {
-                qWarning() << "Got invalid json object" << m_inputDataStream;
-                m_inputDataStream.clear();
-                m_readingResponse = false;
+                qWarning() << "Got invalid json object2" << m_inputDataStream;
+                //m_inputDataStream.clear();
+                //m_readingResponse = false;
                 return;
             }
 
@@ -1090,9 +1090,9 @@ void WirelessSetupManager::onSystemServiceCharacteristicChanged(const QLowEnergy
         QJsonParseError error;
         QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
         if (error.error != QJsonParseError::NoError) {
-            qWarning() << "Got invalid json object" << m_inputDataStream;
-            m_inputDataStream.clear();
-            m_readingResponse = false;
+            qWarning() << "Got invalid json object1" << m_inputDataStream;
+            //m_inputDataStream.clear();
+            //m_readingResponse = false;
             return;
         }
 
