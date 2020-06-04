@@ -346,7 +346,7 @@ void WirelessSetupManager::pressPushButton()
     request.insert("c", static_cast<int>(SystemServiceCommandPushAuthentication));
 
     QByteArray data = QJsonDocument::fromVariant(request).toJson(QJsonDocument::Compact) + '\n';
-    qDebug() << "WifiSetupManager: SystemService: Start streaming response data:" << data.count() << "bytes";
+    qDebug() << "WifiSetupManager: SystemService: Start streaming request data:" << data.count() << "bytes";
 
     int sentDataLength = 0;
     QByteArray remainingData = data;
@@ -354,6 +354,7 @@ void WirelessSetupManager::pressPushButton()
         QByteArray package = remainingData.left(20);
         sentDataLength += package.count();
         m_systemService->writeCharacteristic(commanderCharacteristic, package);
+        qDebug() << "package.count: " << package.count();
         remainingData = remainingData.remove(0, package.count());
     }
 
@@ -487,7 +488,7 @@ void WirelessSetupManager::streamData(const QVariantMap &request)
     }
 
     QByteArray data = QJsonDocument::fromVariant(request).toJson(QJsonDocument::Compact) + '\n';
-    qDebug() << "WifiSetupManager: WirelessService: Start streaming response data:" << data.count() << "bytes";
+    qDebug() << "WifiSetupManager: WirelessService: Start streaming request data:" << data.count() << "bytes";
 
     int sentDataLength = 0;
     QByteArray remainingData = data;
@@ -1012,9 +1013,12 @@ void WirelessSetupManager::onWifiServiceCharacteristicChanged(const QLowEnergyCh
             QJsonParseError error;
             QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
             if (error.error != QJsonParseError::NoError) {
-                qWarning() << "Got invalid json object2" << m_inputDataStream;
-                //m_inputDataStream.clear();
-                //m_readingResponse = false;
+                qWarning() << "Got invalid json object2 (size " << m_inputDataStream.size() << ") " << m_inputDataStream;
+                for (int i = 0; i < m_inputDataStream.size(); i += 512) {
+                                    qWarning() << m_inputDataStream.mid(i, 512);
+                                }
+                m_inputDataStream.clear();
+                m_readingResponse = false;
                 return;
             }
 
