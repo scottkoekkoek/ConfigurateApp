@@ -29,7 +29,7 @@ Item {
                 height: root.step > 1 ? parent.height : 0
                 width: height
                 radius: height / 2
-                color: "#e71d36"
+                color: "#87ceff"
                 Behavior on height {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
@@ -43,7 +43,7 @@ Item {
                 color: "white"
             }
             border.width: root.step > 0 ? 3 : 0
-            border.color: "#e71d36"
+            border.color: "#87ceff"
 
             MouseArea {
                 anchors.fill: parent
@@ -54,12 +54,12 @@ Item {
         Rectangle {
             Layout.preferredWidth: app.iconSize
             Layout.preferredHeight: 4
-//            color: root.step > 2 ? "#e71d36" : "#D8D8D8"
+//            color: root.step > 2 ? "#87ceff" : "#D8D8D8"
             color: "#D8D8D8"
             Rectangle {
                 anchors.fill: parent
                 anchors.rightMargin:  root.step > 2 ? 0 : parent.width
-                color: "#e71d36"
+                color: "#87ceff"
                 Behavior on anchors.rightMargin {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
@@ -70,7 +70,7 @@ Item {
             Layout.preferredWidth: app.iconSize * 1.5
             Layout.preferredHeight: app.iconSize * 1.5
             radius: height / 2
-//            color: root.step > 4 ? "#e71d36" : "#D8D8D8"
+//            color: root.step > 4 ? "#87ceff" : "#D8D8D8"
             color: "#D8D8D8"
 
             BerryLanBusyIndicator {
@@ -85,7 +85,7 @@ Item {
                 height: root.step > 4 ? parent.height : 0
                 width: height
                 radius: height / 2
-                color: "#e71d36"
+                color: "#87ceff"
                 Behavior on height {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
@@ -98,17 +98,17 @@ Item {
                 color: "white"
             }
             border.width: root.step > 3 ? 3 : 0
-            border.color: "#e71d36"
+            border.color: "#87ceff"
         }
         Rectangle {
             Layout.preferredWidth: app.iconSize
             Layout.preferredHeight: 4
-//            color: root.step > 5 ? "#e71d36" : "#D8D8D8"
+//            color: root.step > 5 ? "#87ceff" : "#D8D8D8"
             color: "#D8D8D8"
             Rectangle {
                 anchors.fill: parent
                 anchors.rightMargin:  root.step > 5 ? 0 : parent.width
-                color: "#e71d36"
+                color: "#87ceff"
                 Behavior on anchors.rightMargin {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
@@ -118,7 +118,7 @@ Item {
             Layout.preferredWidth: app.iconSize * 1.5
             Layout.preferredHeight: app.iconSize * 1.5
             radius: height / 2
-//            color: root.step > 7 ? "#e71d36" : "#D8D8D8"
+//            color: root.step > 7 ? "#87ceff" : "#D8D8D8"
             color: "#D8D8D8"
             BerryLanBusyIndicator {
                 anchors.fill: parent
@@ -131,7 +131,7 @@ Item {
                 height: root.step > 7 ? parent.height : 0
                 width: height
                 radius: height / 2
-                color: "#e71d36"
+                color: "#87ceff"
                 Behavior on height {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
@@ -144,7 +144,7 @@ Item {
                 color: "white"
             }
             border.width: root.step > 6 ? 3 : 0
-            border.color: "#e71d36"
+            border.color: "#87ceff"
 
             MouseArea {
                 anchors.fill: parent

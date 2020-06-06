@@ -15,7 +15,7 @@ ApplicationWindow {
 
     Material.foreground: "#011627"
     Material.background: "#fdfffc"
-    Material.accent: "#e71d36"
+    Material.accent: "#87ceff"
 
     property int iconSize: 32
     property int margins: 6
@@ -358,7 +358,7 @@ ApplicationWindow {
                                 Layout.preferredHeight: app.iconSize
                                 Layout.preferredWidth: app.iconSize
                                 name: "../images/eye.svg"
-                                color: passwordTextField.showPassword ? "#e71d36" : keyColor
+                                color: passwordTextField.showPassword ? "#87ceff" : keyColor
                                 MouseArea {
                                     anchors.fill: parent
                                     onClicked: passwordTextField.showPassword = !passwordTextField.showPassword
