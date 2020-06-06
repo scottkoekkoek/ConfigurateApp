@@ -107,24 +107,27 @@ void WirelessAccessPoints::clearModel()
 void WirelessAccessPoints::addWirelessAccessPoint(WirelessAccessPoint *accessPoint)
 {
     accessPoint->setParent(this);
+    if(!accessPoint->ssid().isEmpty() && getAccessPoint(accessPoint->ssid()) == 0){
 
-    beginInsertRows(QModelIndex(), m_wirelessAccessPoints.count(), m_wirelessAccessPoints.count());
-     qDebug() << "WirelessAccessPoints: access point added" << accessPoint->ssid() << accessPoint->macAddress();
-    m_wirelessAccessPoints.append(accessPoint);
-    endInsertRows();
+        beginInsertRows(QModelIndex(), m_wirelessAccessPoints.count(), m_wirelessAccessPoints.count());
+        qDebug() << "Beschikbare ssid"<< getAccessPoint(accessPoint->ssid());
+        qDebug() << "WirelessAccessPoints: access point added" << accessPoint->ssid() << accessPoint->macAddress();
+        m_wirelessAccessPoints.append(accessPoint);
+        endInsertRows();
 
-    connect(accessPoint, &WirelessAccessPoint::signalStrengthChanged, this, [accessPoint, this]() {
-        int idx = m_wirelessAccessPoints.indexOf(accessPoint);
-        if (idx < 0) return;
-        emit dataChanged(index(idx), index(idx), {WirelessAccesspointRoleSignalStrength});
-    });
-    connect(accessPoint, &WirelessAccessPoint::hostAddressChanged, this, [accessPoint, this]() {
-        int idx = m_wirelessAccessPoints.indexOf(accessPoint);
-        if (idx < 0) return;
-        emit dataChanged(index(idx), index(idx), {WirelessAccesspointRoleHostAddress});
-    });
+        connect(accessPoint, &WirelessAccessPoint::signalStrengthChanged, this, [accessPoint, this]() {
+            int idx = m_wirelessAccessPoints.indexOf(accessPoint);
+            if (idx < 0) return;
+            emit dataChanged(index(idx), index(idx), {WirelessAccesspointRoleSignalStrength});
+        });
+        connect(accessPoint, &WirelessAccessPoint::hostAddressChanged, this, [accessPoint, this]() {
+            int idx = m_wirelessAccessPoints.indexOf(accessPoint);
+            if (idx < 0) return;
+            emit dataChanged(index(idx), index(idx), {WirelessAccesspointRoleHostAddress});
+        });
 
-    emit countChanged();
+        emit countChanged();
+    }
 }
 
 void WirelessAccessPoints::removeWirelessAccessPoint(WirelessAccessPoint *accessPoint)
