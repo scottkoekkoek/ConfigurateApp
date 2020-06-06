@@ -30,22 +30,22 @@
 /*******************************************************************************************************************/
 //Universally unique identifier wordt gedefineerd
 
-static QBluetoothUuid wifiServiceUuid =                 QBluetoothUuid(QUuid("e081fec0-f757-4449-b9c9-bfa83133f7fc"));
-static QBluetoothUuid wifiCommanderCharacteristicUuid = QBluetoothUuid(QUuid("e081fec1-f757-4449-b9c9-bfa83133f7fc"));
-static QBluetoothUuid wifiResponseCharacteristicUuid =  QBluetoothUuid(QUuid("e081fec2-f757-4449-b9c9-bfa83133f7fc"));
-static QBluetoothUuid wifiStatusCharacteristicUuid =    QBluetoothUuid(QUuid("e081fec3-f757-4449-b9c9-bfa83133f7fc"));
-static QBluetoothUuid wifiModeCharacteristicUuid =      QBluetoothUuid(QUuid("e081fec4-f757-4449-b9c9-bfa83133f7fc"));
+static QBluetoothUuid wifiServiceUuid =                 QBluetoothUuid(QUuid("e28190f7-a335-4a38-978b-10a9eeeafa5f"));
+static QBluetoothUuid wifiCommanderCharacteristicUuid = QBluetoothUuid(QUuid("b5c3673d-93bf-4137-8c7e-c8ecbcbb4242"));
+static QBluetoothUuid wifiResponseCharacteristicUuid =  QBluetoothUuid(QUuid("c65c5c6b-2d17-486e-972d-6e1dadb1d9c5"));
+static QBluetoothUuid wifiStatusCharacteristicUuid =    QBluetoothUuid(QUuid("4f54753b-fc73-4b71-85ad-e18110255f10"));
+static QBluetoothUuid wifiModeCharacteristicUuid =      QBluetoothUuid(QUuid("f3e9117b-1b56-4822-95bd-782c5ef199c6"));
 
-static QBluetoothUuid networkServiceUuid =                  QBluetoothUuid(QUuid("ef6d6610-b8af-49e0-9eca-ab343513641c"));
-static QBluetoothUuid networkStatusCharacteristicUuid =     QBluetoothUuid(QUuid("ef6d6611-b8af-49e0-9eca-ab343513641c"));
-static QBluetoothUuid networkCommanderCharacteristicUuid =  QBluetoothUuid(QUuid("ef6d6612-b8af-49e0-9eca-ab343513641c"));
-static QBluetoothUuid networkResponseCharacteristicUuid =   QBluetoothUuid(QUuid("ef6d6613-b8af-49e0-9eca-ab343513641c"));
-static QBluetoothUuid networkingEnabledCharacteristicUuid = QBluetoothUuid(QUuid("ef6d6614-b8af-49e0-9eca-ab343513641c"));
-static QBluetoothUuid wirelessEnabledCharacteristicUuid =   QBluetoothUuid(QUuid("ef6d6615-b8af-49e0-9eca-ab343513641c"));
+static QBluetoothUuid networkServiceUuid =                  QBluetoothUuid(QUuid("f943fb8c-fb8b-4aa4-a0e1-d7fcd3bb3e03"));
+static QBluetoothUuid networkStatusCharacteristicUuid =     QBluetoothUuid(QUuid("7e6da1e0-8605-4c90-bc25-1da212251205"));
+static QBluetoothUuid networkCommanderCharacteristicUuid =  QBluetoothUuid(QUuid("1366634a-f595-44e2-8cf5-2bd9e265cd07"));
+static QBluetoothUuid networkResponseCharacteristicUuid =   QBluetoothUuid(QUuid("569b18c8-6f59-4a50-a8d4-e4ca20309db1"));
+static QBluetoothUuid networkingEnabledCharacteristicUuid = QBluetoothUuid(QUuid("e7002126-78f9-4936-aa2d-91a9ea2407ad"));
+static QBluetoothUuid wirelessEnabledCharacteristicUuid =   QBluetoothUuid(QUuid("1b91ccfc-4fea-4ed0-bd76-9bf047b8d6c2"));
 
-static QBluetoothUuid systemServiceUuid =                 QBluetoothUuid(QUuid("e081fed0-f757-4449-b9c9-bfa83133f7fc"));
-static QBluetoothUuid systemCommanderCharacteristicUuid = QBluetoothUuid(QUuid("e081fed1-f757-4449-b9c9-bfa83133f7fc"));
-static QBluetoothUuid systemResponseCharacteristicUuid =  QBluetoothUuid(QUuid("e081fed2-f757-4449-b9c9-bfa83133f7fc"));
+static QBluetoothUuid systemServiceUuid =                 QBluetoothUuid(QUuid("1b4be148-ac7d-4357-86fe-1922fbb88ba1"));
+static QBluetoothUuid systemCommanderCharacteristicUuid = QBluetoothUuid(QUuid("9f774759-fa4d-42a3-9cac-99ea550cf7c0"));
+static QBluetoothUuid systemResponseCharacteristicUuid =  QBluetoothUuid(QUuid("da7205aa-df8c-4169-943c-3364c4fb8322"));
 
 /*******************************************************************************************************************/
 
