@@ -83,9 +83,9 @@ void BluetoothDevice::connectDevice()
 void BluetoothDevice::disconnectDevice()
 {
     qDebug() << "We gaan disconnecten";
-    sleep(2);
+    //sleep(2);
     m_controller->disconnectFromDevice();
-    sleep(5);
+    //sleep(5);
     qDebug() << "Verbroken";
 }
 

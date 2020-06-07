@@ -75,27 +75,6 @@ void BluetoothDeviceInfo::setSelected(bool selected)
     emit selectedChanged();
 }
 
-/*void BluetoothDeviceInfo::setIndexOutOfRange(int index)
-{
-    qDebug() << "Test1";
-    if (index == 0) {
-        outOfRange_ = true;
-        qDebug() << "Out of Range: " << outOfRange_;
-    }
-    else {
-        outOfRange_ = false;
-        qDebug() << "Out of Range: " << outOfRange_;
-    }
-    emit outOfRangeChanged();
-}
-
-bool BluetoothDeviceInfo::outOfRange()
-{
-    qDebug() << "Test2";
-    return outOfRange_;
-    emit outOfRangeChanged();
-}*/
-
 QBluetoothDeviceInfo BluetoothDeviceInfo::getBluetoothDeviceInfo() const
 {
     return m_deviceInfo;

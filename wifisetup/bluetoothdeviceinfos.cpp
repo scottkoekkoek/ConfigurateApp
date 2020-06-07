@@ -79,17 +79,6 @@ BluetoothDeviceInfo *BluetoothDeviceInfos::set(int index, bool selected)
         qDebug() << "Stap 1";
         return Q_NULLPTR;
     }
-    /*else {
-        if (selected == false) {
-            qDebug() << "Stap 2";
-            selected = true;
-        }
-        else if (selected == true) {
-            qDebug() << "Stap 3";
-            selected = false;
-        }
-    }
-    qDebug() << "Set: " << selected;*/
     BluetoothDeviceInfo *bdi = m_deviceInfos.at(index);
     bdi->setSelected(selected);
     return bdi;
