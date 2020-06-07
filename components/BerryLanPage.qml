@@ -73,11 +73,15 @@ Page {
             width: app.iconSize
             height: app.iconSize
             anchors { right: parent.right; top: parent.top; margins: app.margins }
-            name: "../images/help.svg"
+            name: "../images/refresh.svg"
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: root.helpClicked()
+                onClicked:{
+                    networkManager.manager.disconnectWirelessNetwork();
+                    networkManager.manager.disconnectDevice();
+                    swipeView.currentIndex == 0;
+                }
             }
         }
     }
