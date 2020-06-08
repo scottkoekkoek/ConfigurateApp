@@ -21,6 +21,9 @@ ApplicationWindow {
     property int margins: 6
     property int largeFont: 20
     property int smallFont: 12
+    property int index;
+    property int selectedCount: 0
+    property int currentCount: 0
     property string sidd;
     property string password;
     property bool busy: false
@@ -83,12 +86,14 @@ ApplicationWindow {
                     if (discovery.deviceInfos.count <= networkManager.deviceIndex){
                         print("Klaar! uit init");
                         busy = false
-                        print("Volgende 2");
+                        print("Volgende 2");                        
                         swipeView.currentIndex++;
                     }
                     print("Index erna: ",networkManager.deviceIndex);
                     networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
                     networkManager.connectDevice();
+                    currentCount++;
+
                 }
                 else{
                     swipeView.currentIndex = 0;
@@ -102,18 +107,6 @@ ApplicationWindow {
             if (!networkManager.manager.connected) {
                 if (swipeView.currentIndex == 5){
                     busy = true;
-                    /*networkManager.deviceIndex = networkManager.deviceIndex + 1;
-                    print("Voor de while loop: ", discovery.deviceInfos.get(networkManager.deviceIndex).selected);
-                    while (!discovery.deviceInfos.get(networkManager.deviceIndex).selected) {
-                        networkManager.deviceIndex = networkManager.deviceIndex + 1;
-                        print("Index daarna: ",networkManager.deviceIndex);
-                        //print("Count: ", discovery.deviceInfos.count);
-
-                        //print("Einde van de while loop: ", discovery.deviceInfos.get(networkManager.deviceIndex).selected);
-                    }
-                    print("Gevonden!");
-                    networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
-                    networkManager.connectDevice();*/
                 }
                 else{
                     swipeView.currentIndex = 0;
@@ -202,6 +195,11 @@ ApplicationWindow {
                     }
                     return 4;
                 case 4:
+                    for(index = 0 ; index < discovery.deviceInfos.count ; index++){
+                        if(discovery.deviceInfos.get(index).selected){
+                            selectedCount++;
+                        }
+                    }
                     return 4;
                 case 5:
                     if (networkManager.manager.wirelessStatus < WirelessSetupManager.WirelessStatusConfig) {
@@ -290,6 +288,7 @@ ApplicationWindow {
                                             : "../images/wifi-0.svg"
 
                             onClicked: {
+                                currentCount++;
                                 print("Connect to ", model.ssid, " --> ", model.macAddress)
                                 d.currentAP = accessPointsProxy.get(index);
                                 ssidTextField.text = d.currentAP.ssid;
@@ -397,6 +396,7 @@ ApplicationWindow {
                     id: connectingToWiFiView
                     height: swipeView.height
                     width: swipeView.width
+
                     onButtonClicked: {
                         swipeView.currentIndex--;
                         if (!d.currentAP.isProtected) {
@@ -416,7 +416,7 @@ ApplicationWindow {
                         Label {
                             Layout.fillWidth: true
                             Layout.margins: app.margins
-                            text: qsTr("All the Wamms are configurated!")
+                            text: "All the "+selectedCount+" Wamm(s) are configurated!"
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                             font.pixelSize: app.largeFont
                             font.bold: true
