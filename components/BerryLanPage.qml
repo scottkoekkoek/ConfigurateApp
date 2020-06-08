@@ -8,12 +8,14 @@ Page {
     property int step: 0
     property bool backButtonVisible: false
     property bool nextButtonVisible: false
+    property bool selectAllButtonVisible: false
 
     property alias content: contentItemContainer.data
 
     signal helpClicked()
     signal backClicked()
     signal nextClicked()
+    signal selectAllClicked()
 
     header: BerryLanHeader {
         text: root.title
@@ -21,6 +23,8 @@ Page {
         onBackClicked: root.backClicked()
         nextButtonVisible: root.nextButtonVisible
         onNextClicked: root.nextClicked()
+        selectAllButtonVisible: root.selectAllButtonVisible
+        onSelectAllClicked: root.selectAllClicked()
     }
 
     ColumnLayout {
@@ -78,10 +82,15 @@ Page {
             MouseArea {
                 anchors.fill: parent
                 onClicked:{
-                    networkManager.manager.disconnectWirelessNetwork();
-                    networkManager.manager.disconnectDevice();
-                    swipeView.currentIndex == 0;
-                }
+                    print("Current swipeview:", swipeView.currentIndex)
+                    if(swipeView.currentIndex > 2){
+                        if(swipeView.currentIndex > 3){
+                            networkManager.manager.disconnectWirelessNetwork();
+                        }
+                        networkManager.manager.disconnectDevice();
+                    }
+                    swipeView.currentIndex = 0;
+               }
             }
         }
     }

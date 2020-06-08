@@ -9,13 +9,19 @@ ColumnLayout {
 
     property string text
 
+    property int index
+
     property bool backButtonVisible: false
 
     property bool nextButtonVisible: false
 
+    property bool selectAllButtonVisible: false
+
     signal backClicked()
 
     signal nextClicked()
+
+    signal selectAllClicked()
 
     RowLayout {
         Layout.margins: app.margins
@@ -37,6 +43,25 @@ ColumnLayout {
             visible: root.backButtonVisible
             onClicked:{
                 swipeView.currentIndex--
+            }
+        }
+
+        Button {
+            id: selectAll
+            text: qsTr("select all")
+            visible: root.selectAllButtonVisible
+            onClicked:{
+                    for (index=0; index < discovery.deviceInfos.count ; index++){
+                        discovery.deviceInfos.set(index, true)
+                    }
+                    while(!discovery.deviceInfos.get(networkManager.deviceIndex).selected){
+                        networkManager.deviceIndex = networkManager.deviceIndex + 1;
+                        print("Hallo: ", networkManager.deviceIndex);
+                    }
+                    print("Hallo2: ", networkManager.deviceIndex);
+                    networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
+                    networkManager.connectDevice();
+                    swipeView.currentIndex++
             }
         }
 

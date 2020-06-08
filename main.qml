@@ -182,6 +182,8 @@ ApplicationWindow {
 
             nextButtonVisible: swipeView.currentIndex === 1
 
+            selectAllButtonVisible: swipeView.currentIndex === 1
+
             onHelpClicked: swipeView.currentIndex++
 
             step: {
