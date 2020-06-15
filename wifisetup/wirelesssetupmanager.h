@@ -278,6 +278,7 @@ private slots:
     void onWifiServiceStateChanged(const QLowEnergyService::ServiceState &state);
     void onWifiServiceCharacteristicChanged(const QLowEnergyCharacteristic &characteristic, const QByteArray &value);
     void onWifiServiceReadFinished(const QLowEnergyCharacteristic &characteristic, const QByteArray &value);
+    void jsonFileCorrector();
 
     void onSystemServiceStateChanged(const QLowEnergyService::ServiceState &state);
     void onSystemServiceCharacteristicChanged(const QLowEnergyCharacteristic &characteristic, const QByteArray &value);

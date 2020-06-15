@@ -29,7 +29,6 @@ BluetoothDevice::BluetoothDevice(const QBluetoothDeviceInfo &deviceInfo, QObject
     m_connected(false)
 {
     m_controller = QLowEnergyController::createCentral(deviceInfo, this);
-//    m_controller->setRemoteAddressType(QLowEnergyController::PublicAddress);
 
     connect(m_controller, &QLowEnergyController::connected, this, &BluetoothDevice::onConnected);
     connect(m_controller, &QLowEnergyController::disconnected, this, &BluetoothDevice::onDisconnected);

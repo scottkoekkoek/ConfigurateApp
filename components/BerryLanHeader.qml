@@ -83,8 +83,6 @@ ColumnLayout {
             text: qsTr("next")
             visible: root.nextButtonVisible
             onClicked:{
-
-
                 while(!discovery.deviceInfos.get(networkManager.deviceIndex).selected){
                     networkManager.deviceIndex = networkManager.deviceIndex + 1;
                     print("Hallo: ", networkManager.deviceIndex);

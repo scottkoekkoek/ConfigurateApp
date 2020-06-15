@@ -24,6 +24,8 @@
 #include "wirelessaccesspoint.h"
 #include "wirelessaccesspoints.h"
 #include "wirelessaccesspointsproxy.h"
+#include <string.h>
+#include <iostream>
 
 #include <QJsonDocument>
 
@@ -487,9 +489,23 @@ void WirelessSetupManager::streamData(const QVariantMap &request)
         return;
     }
 
+    qDebug() << "Request: "<< request;
     QByteArray data = QJsonDocument::fromVariant(request).toJson(QJsonDocument::Compact) + '\n';
     qDebug() << "WifiSetupManager: WirelessService: Start streaming request data:" << data.count() << "bytes";
-
+    qDebug() << "Data" << data;
+    /*bool go = true;
+    while(go){
+        if(!data.endsWith(",{")){
+            data.remove(data.length()-1,1);
+            qDebug() << "Eindigt niet op ,{";
+        }
+        else if(data.endsWith(",{")){
+            data.remove(data.length()-2,2);
+            data = data + '\n';
+            go = false;
+        }
+        qDebug() << "Data: " << data;
+    }*/
     int sentDataLength = 0;
     QByteArray remainingData = data;
     while (!remainingData.isEmpty()) {
@@ -498,6 +514,7 @@ void WirelessSetupManager::streamData(const QVariantMap &request)
         m_wifiService->writeCharacteristic(characteristic, package);
         remainingData = remainingData.remove(0, package.count());
     }
+    qDebug() << "RemainingData: " << remainingData;
 
     qDebug() << "WifiSetupManager: WirelessService: Finished streaming request data";
 }
@@ -901,6 +918,7 @@ void WirelessSetupManager::onNetworkServiceCharacteristicChanged(const QLowEnerg
 
         // If command finished
         if (value.endsWith('\n')) {
+            jsonFileCorrector();
             QJsonParseError error;
             QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
             if (error.error != QJsonParseError::NoError) {
@@ -994,6 +1012,124 @@ void WirelessSetupManager::onWifiServiceStateChanged(const QLowEnergyService::Se
     checkInitialized();
 }
 
+void WirelessSetupManager::jsonFileCorrector()
+{
+    //static bool jsonFileChecked = false;
+    //if (jsonFileChecked != true){
+        bool go = true;
+        bool start = true;
+        bool gotHim = true;
+        bool search_e = false;
+        bool search_m = false;
+        bool search_p = false;
+        bool search_s = false;
+        bool search_i = false;
+        bool search_comma = false;
+        bool block = false;
+        int splitter;
+        int counter = 0;
+        for (int i = 0; i < m_inputDataStream.size(); i += 512) {
+            qWarning() << m_inputDataStream.mid(i, 512);
+        }
+        for(; go && counter < m_inputDataStream.length() ; ++counter){
+            char check = m_inputDataStream[counter];
+            qDebug() << "Check1: " << check;
+            if (start && counter < m_inputDataStream.length()){
+                qDebug() << "16";
+                if (check == '['){
+                    qDebug() << "1";
+                    start = false;
+                    block = true;
+                }
+            }
+            if (check == '{' && counter > 3 && start){
+                    qDebug() << "15";
+                    start = false;
+                    --counter;
+            }
+            else if (check == '{' && !start){
+                splitter = counter-1;
+                gotHim = true;
+                for(; gotHim && counter < m_inputDataStream.length(); ++counter){
+                    char check = m_inputDataStream[counter];
+                    qDebug() << "Check2: " << check;
+                    if (check == '{' && search_e){
+                        qDebug() << "Knip 11 vanaf " << splitter << " tot " << m_inputDataStream.length();
+                        m_inputDataStream.remove(splitter,m_inputDataStream.length()-splitter);
+                        m_inputDataStream.insert(splitter, "],\"r\":0}\n");
+                        go = false;
+                    }
+                    else if (check == 'e' && !search_e){
+                        qDebug() << '3';
+                        search_e = true;
+                    }
+                    else if (check == 'i' && search_comma && search_e && !block){
+                        qDebug() << "17";
+                        search_i = true;
+                        search_comma = false;
+                    }
+                    else if (check == 'm' && search_comma && search_e && !search_m){
+                        qDebug() << "5";
+                        search_m = true;
+                        search_comma = false;
+                    }
+                    else if (check == 'p' && search_comma && search_m && search_e && !search_p){
+                        qDebug() << "6";
+                        search_p = true;
+                        search_comma = false;
+                    }
+                    else if (check == 's' && search_comma && search_p && search_m && search_e && !search_s){
+                        qDebug() << "7";
+                        search_s = true;
+                        search_comma = false;
+                    }
+                    else if (check == '}'){
+                        qDebug() << "8";
+                        if (search_e && search_m && search_p && search_s){
+                            qDebug() << "12";
+                            search_e = false;
+                            search_m = false;
+                            search_p = false;
+                            search_s = false;
+                            search_comma = false;
+                            gotHim = false;
+                            counter--;
+                        }
+                        else{
+                            qDebug() << "Knip 9";
+                            m_inputDataStream.remove(splitter,m_inputDataStream.length());
+                            m_inputDataStream.insert(splitter, "],\"r\":0}\n");
+                            //jsonFileChecked = true;
+                            go = false;
+                        }
+                    }
+                    else if (search_comma){
+                        qDebug() << "Knip 13";
+                        m_inputDataStream.remove(splitter,m_inputDataStream.length());
+                        m_inputDataStream.insert(splitter, "],\"r\":0}\n");
+                        go = false;
+                    }
+                    if (check == ','){
+                        qDebug() << "4";
+                        search_comma = true;
+                        ++counter;
+
+                    }
+
+                }
+
+            }
+            else if(check == ']' && !start && block){
+                qDebug() << "10";
+                go = false;
+            }
+            else if(!block && !start){
+                qDebug() << "14";
+                go = false;
+            }
+        }
+}
+
 void WirelessSetupManager::onWifiServiceCharacteristicChanged(const QLowEnergyCharacteristic &characteristic, const QByteArray &value)
 {
     Q_UNUSED(characteristic)
@@ -1010,6 +1146,7 @@ void WirelessSetupManager::onWifiServiceCharacteristicChanged(const QLowEnergyCh
 
         // If command finished
         if (value.endsWith('\n')) {
+            jsonFileCorrector();
             QJsonParseError error;
             QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
             if (error.error != QJsonParseError::NoError) {
@@ -1091,6 +1228,7 @@ void WirelessSetupManager::onSystemServiceCharacteristicChanged(const QLowEnergy
 
     // If command finished
     if (value.endsWith('\n')) {
+        jsonFileCorrector();
         QJsonParseError error;
         QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
         if (error.error != QJsonParseError::NoError) {
