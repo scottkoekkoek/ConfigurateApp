@@ -59,7 +59,7 @@ WirelessSetupManager *NetworkManagerController::manager()
 
 void NetworkManagerController::connectDevice()
 {
-    qDebug() << "We gaan connecten";
+    qDebug() << "Connect the device.";
     if (!m_bluetoothDeviceInfo) {
         qWarning() << "Can't connect to device. bluetoothDeviceInfo not set.";
         return;
@@ -78,6 +78,5 @@ void NetworkManagerController::connectDevice()
 
     m_wirelessSetupManager = new WirelessSetupManager(m_bluetoothDeviceInfo->getBluetoothDeviceInfo(), this);
     emit managerChanged();
-    //sleep(2);
     m_wirelessSetupManager->connectDevice();
 }

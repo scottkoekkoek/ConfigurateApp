@@ -29,14 +29,12 @@
 BluetoothDeviceInfo::BluetoothDeviceInfo()
 {
     selected_ = false;
-    //outOfRange_ = false;
 }
 
 BluetoothDeviceInfo::BluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo)
 {
     m_deviceInfo = deviceInfo;
     selected_ = false;
-    //outOfRange_ = false;
 }
 
 QString BluetoothDeviceInfo::address() const
@@ -62,16 +60,13 @@ bool BluetoothDeviceInfo::isLowEnergy() const
 
 bool BluetoothDeviceInfo::selected()
 {
-    qDebug() << "Status: " << selected_;
     return selected_;
     emit selectedChanged();
 }
 
 void BluetoothDeviceInfo::setSelected(bool selected)
 {
-    qDebug() << "Oud: " << selected_ ;
     selected_ = selected;
-    qDebug() << "Nieuw: " << selected_ ;
     emit selectedChanged();
 }
 

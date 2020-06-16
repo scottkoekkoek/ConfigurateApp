@@ -81,11 +81,9 @@ void BluetoothDevice::connectDevice()
 
 void BluetoothDevice::disconnectDevice()
 {
-    qDebug() << "We gaan disconnecten";
-    //sleep(2);
     m_controller->disconnectFromDevice();
-    //sleep(5);
-    qDebug() << "Verbroken";
+    sleep(1);
+    qDebug() << "Connection disconnected";
 }
 
 void BluetoothDevice::setConnected(const bool &connected)
@@ -125,7 +123,6 @@ void BluetoothDevice::onDeviceError(const QLowEnergyController::Error &error)
     disconnectDevice();
     qDebug() << "QLoweEnergyController reconnecting...";
     m_controller->connectToDevice();
-    //setConnected(false);
 }
 
 void BluetoothDevice::onDeviceStateChanged(const QLowEnergyController::ControllerState &state)

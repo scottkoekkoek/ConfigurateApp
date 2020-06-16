@@ -110,7 +110,6 @@ void WirelessAccessPoints::addWirelessAccessPoint(WirelessAccessPoint *accessPoi
     if(!accessPoint->ssid().isEmpty() && getAccessPoint(accessPoint->ssid()) == 0){
 
         beginInsertRows(QModelIndex(), m_wirelessAccessPoints.count(), m_wirelessAccessPoints.count());
-        qDebug() << "Beschikbare ssid"<< getAccessPoint(accessPoint->ssid());
         qDebug() << "WirelessAccessPoints: access point added" << accessPoint->ssid() << accessPoint->macAddress();
         m_wirelessAccessPoints.append(accessPoint);
         endInsertRows();

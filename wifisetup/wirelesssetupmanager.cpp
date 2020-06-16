@@ -368,13 +368,11 @@ void WirelessSetupManager::checkInitialized()
     bool initialized = false;
 
     if (m_systemService) {
-        qDebug() << "Service juist";
         initialized = m_deviceInformationService->state() == QLowEnergyService::ServiceDiscovered
                 && m_netwokService->state() == QLowEnergyService::ServiceDiscovered
                 && m_wifiService->state() == QLowEnergyService::ServiceDiscovered
                 && m_systemService->state() == QLowEnergyService::ServiceDiscovered;
     } else {
-        qDebug() << "Service anders";
         initialized = m_deviceInformationService->state() == QLowEnergyService::ServiceDiscovered
                 && m_netwokService->state() == QLowEnergyService::ServiceDiscovered
                 && m_wifiService->state() == QLowEnergyService::ServiceDiscovered;
@@ -492,20 +490,7 @@ void WirelessSetupManager::streamData(const QVariantMap &request)
     qDebug() << "Request: "<< request;
     QByteArray data = QJsonDocument::fromVariant(request).toJson(QJsonDocument::Compact) + '\n';
     qDebug() << "WifiSetupManager: WirelessService: Start streaming request data:" << data.count() << "bytes";
-    qDebug() << "Data" << data;
-    /*bool go = true;
-    while(go){
-        if(!data.endsWith(",{")){
-            data.remove(data.length()-1,1);
-            qDebug() << "Eindigt niet op ,{";
-        }
-        else if(data.endsWith(",{")){
-            data.remove(data.length()-2,2);
-            data = data + '\n';
-            go = false;
-        }
-        qDebug() << "Data: " << data;
-    }*/
+
     int sentDataLength = 0;
     QByteArray remainingData = data;
     while (!remainingData.isEmpty()) {
@@ -514,8 +499,6 @@ void WirelessSetupManager::streamData(const QVariantMap &request)
         m_wifiService->writeCharacteristic(characteristic, package);
         remainingData = remainingData.remove(0, package.count());
     }
-    qDebug() << "RemainingData: " << remainingData;
-
     qDebug() << "WifiSetupManager: WirelessService: Finished streaming request data";
 }
 
@@ -923,8 +906,8 @@ void WirelessSetupManager::onNetworkServiceCharacteristicChanged(const QLowEnerg
             QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
             if (error.error != QJsonParseError::NoError) {
                 qWarning() << "Got invalid json object3" << m_inputDataStream;
-                //m_inputDataStream.clear();
-                //m_readingResponse = false;
+                m_inputDataStream.clear();
+                m_readingResponse = false;
                 return;
             }
 
@@ -959,7 +942,6 @@ void WirelessSetupManager::onNetworkServiceReadFinished(const QLowEnergyCharacte
 
 void WirelessSetupManager::onWifiServiceStateChanged(const QLowEnergyService::ServiceState &state)
 {
-    qDebug() << "State Hier: " << state;
     if (state != QLowEnergyService::ServiceDiscovered)
         return;
 
@@ -1014,8 +996,6 @@ void WirelessSetupManager::onWifiServiceStateChanged(const QLowEnergyService::Se
 
 void WirelessSetupManager::jsonFileCorrector()
 {
-    //static bool jsonFileChecked = false;
-    //if (jsonFileChecked != true){
         bool go = true;
         bool start = true;
         bool gotHim = true;
@@ -1233,8 +1213,8 @@ void WirelessSetupManager::onSystemServiceCharacteristicChanged(const QLowEnergy
         QJsonDocument jsonDocument = QJsonDocument::fromJson(m_inputDataStream, &error);
         if (error.error != QJsonParseError::NoError) {
             qWarning() << "Got invalid json object1" << m_inputDataStream;
-            //m_inputDataStream.clear();
-            //m_readingResponse = false;
+            m_inputDataStream.clear();
+            m_readingResponse = false;
             return;
         }
 

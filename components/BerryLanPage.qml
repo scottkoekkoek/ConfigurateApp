@@ -19,14 +19,19 @@ Page {
 
     header: BerryLanHeader {
         text: root.title
+
+        //Looks in main.qml when the buttons are visble and when not.
         backButtonVisible: root.backButtonVisible
-        onBackClicked: root.backClicked()
         nextButtonVisible: root.nextButtonVisible
-        onNextClicked: root.nextClicked()
         selectAllButtonVisible: root.selectAllButtonVisible
+
+        //Get a signal from main.qml when th user clicked on the button.
+        onBackClicked: root.backClicked()
+        onNextClicked: root.nextClicked()
         onSelectAllClicked: root.selectAllClicked()
     }
 
+    //The status view with animation and loading proces.
     ColumnLayout {
         anchors.fill: parent
 
@@ -48,6 +53,7 @@ Page {
         RowLayout {
             anchors { top: parent.top; margins: app.margins; horizontalCenter: parent.horizontalCenter }
             height: app.iconSize
+            //Bottom text, currently filed with a text using the open source tool nymea.
             Label {
                 Layout.fillWidth: true
                 Layout.preferredHeight: app.iconSize * .8
@@ -56,6 +62,8 @@ Page {
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignBottom
             }
+
+            //Icon of nymea with url when you clicked.
             Image {
                 Layout.preferredHeight: app.iconSize
                 sourceSize.height: app.iconSize
@@ -65,6 +73,8 @@ Page {
                     onClicked: Qt.openUrlExternally("https://nymea.io")
                 }
             }
+
+            //The name nymea
             Label {
                 Layout.preferredHeight: app.iconSize * .8
                 text: "n y m e a     "
@@ -73,21 +83,26 @@ Page {
                 verticalAlignment: Text.AlignBottom
             }
         }
+        //A button that shows on all the pages in them app. When you will go back to the start with any reason,
+        //you can press the button and you go back.
         ColorIcon {
             width: app.iconSize
             height: app.iconSize
             anchors { right: parent.right; top: parent.top; margins: app.margins }
             name: "../images/refresh.svg"
 
+            //When you press the button you go to the start. When your current swipeview is higher
+            //than three will first disconnnect from network, after disconnect network your device disconnect and you go to swipeview zero.
+            //When your swipeview is three will only disconnect your device. If your swipeview is not higher than two you only go to the begin.
             MouseArea {
                 anchors.fill: parent
                 onClicked:{
-                    print("Current swipeview:", swipeView.currentIndex)
+                    print("You go to the start from swipeview ", swipeView.currentIndex)
                     if(swipeView.currentIndex > 2){
                         if(swipeView.currentIndex > 3){
-                            networkManager.manager.disconnectWirelessNetwork();
+                            networkManager.manager.disconnectWirelessNetwork()
                         }
-                        networkManager.manager.disconnectDevice();
+                        networkManager.manager.disconnectDevice()
                     }
                     swipeView.currentIndex = 0;
                }

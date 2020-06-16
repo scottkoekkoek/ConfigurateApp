@@ -22,29 +22,36 @@ ItemDelegate {
         }
 
         RowLayout {
+
+            //Icon by the list items. On screen one with bluetooth devices is the bluetooth icon visible.
+            //On screen three you get a list with SSIDs and icons how strong the signal is.
             ColorIcon {
                 Layout.preferredHeight: app.iconSize
                 Layout.preferredWidth: app.iconSize
                 name: root.iconSource
             }
 
+            //The names on screen one with bluetooth devices and on screen three SSID names.
             Label {
                 Layout.fillWidth: true
                 text: root.text
                 font.pixelSize: app.largeFont
                 elide: Text.ElideRight
             }
+
+            //Create on screen one a box right. When you click on the box it is checked
+            //and selected to configurate later in the proces.
             CheckBox {
                 id: checkbox
                 visible: swipeView.currentIndex == 1
                 onClicked:{
-                    print("Voor set: ",discovery.deviceInfos.get(index).selected)
                     discovery.deviceInfos.set(index, checkState)
-                    print("Na set: ", discovery.deviceInfos.get(index).selected)
+                    print("After setting selected is the state: ", discovery.deviceInfos.get(index).selected)
                 }
             }
         }
 
+        //Horizontale line between the bluetooth devices in the list. To create for each device a box.
         Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 1

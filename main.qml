@@ -15,18 +15,20 @@ ApplicationWindow {
 
     Material.foreground: "#011627"
     Material.background: "#fdfffc"
-    Material.accent: "#87ceff"
+    Material.accent: colorTint
 
     property int iconSize: 32
     property int margins: 6
     property int largeFont: 20
     property int smallFont: 12
-    property int index;
+    property int index
     property int selectedCount: 0
     property int currentCount: 0
-    property string sidd;
-    property string password;
+    property string sidd
+    property string password
     property bool busy: false
+    property string colorTint: "#87ceff"
+    property string colorGray: "#D8D8D8"
 
     BluetoothDiscovery {
         id: discovery
@@ -359,7 +361,7 @@ ApplicationWindow {
                                 Layout.preferredHeight: app.iconSize
                                 Layout.preferredWidth: app.iconSize
                                 name: "../images/eye.svg"
-                                color: passwordTextField.showPassword ? "#87ceff" : keyColor
+                                color: passwordTextField.showPassword ? colorTint : keyColor
                                 MouseArea {
                                     anchors.fill: parent
                                     onClicked: passwordTextField.showPassword = !passwordTextField.showPassword

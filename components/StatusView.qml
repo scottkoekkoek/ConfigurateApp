@@ -10,13 +10,16 @@ Item {
 
     property int step: 0
 
+    //Gives the status in the process.
     RowLayout {
         anchors.centerIn: parent
+
+        //Bluetooth devices status.
         Rectangle {
             Layout.preferredWidth: app.iconSize * 1.5
             Layout.preferredHeight: app.iconSize * 1.5
             radius: height / 2
-            color: "#D8D8D8"
+            color: colorGray
             BerryLanBusyIndicator {
                 anchors.fill: parent
                 visible: step === 0
@@ -29,7 +32,7 @@ Item {
                 height: root.step > 1 ? parent.height : 0
                 width: height
                 radius: height / 2
-                color: "#87ceff"
+                color: colorTint
                 Behavior on height {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
@@ -43,7 +46,7 @@ Item {
                 color: "white"
             }
             border.width: root.step > 0 ? 3 : 0
-            border.color: "#87ceff"
+            border.color: colorTint
 
             MouseArea {
                 anchors.fill: parent
@@ -54,24 +57,23 @@ Item {
         Rectangle {
             Layout.preferredWidth: app.iconSize
             Layout.preferredHeight: 4
-//            color: root.step > 2 ? "#87ceff" : "#D8D8D8"
-            color: "#D8D8D8"
+            color: colorGray
             Rectangle {
                 anchors.fill: parent
                 anchors.rightMargin:  root.step > 2 ? 0 : parent.width
-                color: "#87ceff"
+                color: colorTint
                 Behavior on anchors.rightMargin {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
             }
         }
 
+        //Network status.
         Rectangle {
             Layout.preferredWidth: app.iconSize * 1.5
             Layout.preferredHeight: app.iconSize * 1.5
             radius: height / 2
-//            color: root.step > 4 ? "#87ceff" : "#D8D8D8"
-            color: "#D8D8D8"
+            color: colorGray
 
             BerryLanBusyIndicator {
                 anchors.fill: parent
@@ -85,7 +87,7 @@ Item {
                 height: root.step > 4 ? parent.height : 0
                 width: height
                 radius: height / 2
-                color: "#87ceff"
+                color: colorTint
                 Behavior on height {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
@@ -98,28 +100,27 @@ Item {
                 color: "white"
             }
             border.width: root.step > 3 ? 3 : 0
-            border.color: "#87ceff"
+            border.color: colorTint
         }
         Rectangle {
             Layout.preferredWidth: app.iconSize
             Layout.preferredHeight: 4
-//            color: root.step > 5 ? "#87ceff" : "#D8D8D8"
-            color: "#D8D8D8"
+            color: colorGray
             Rectangle {
                 anchors.fill: parent
                 anchors.rightMargin:  root.step > 5 ? 0 : parent.width
-                color: "#87ceff"
+                color: colorTint
                 Behavior on anchors.rightMargin {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
             }
         }
+        //Connected status.
         Rectangle {
             Layout.preferredWidth: app.iconSize * 1.5
             Layout.preferredHeight: app.iconSize * 1.5
             radius: height / 2
-//            color: root.step > 7 ? "#87ceff" : "#D8D8D8"
-            color: "#D8D8D8"
+            color: colorGray
             BerryLanBusyIndicator {
                 anchors.fill: parent
                 visible: step === 6
@@ -131,7 +132,7 @@ Item {
                 height: root.step > 7 ? parent.height : 0
                 width: height
                 radius: height / 2
-                color: "#87ceff"
+                color: colorTint
                 Behavior on height {
                     NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
                 }
@@ -144,7 +145,7 @@ Item {
                 color: "white"
             }
             border.width: root.step > 6 ? 3 : 0
-            border.color: "#87ceff"
+            border.color: colorTint
 
             MouseArea {
                 anchors.fill: parent

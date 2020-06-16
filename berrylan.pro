@@ -120,3 +120,6 @@ for(qrc, $$list($${RESOURCES})) { ABS_RESOURCES += $$absolute_path($${qrc}) }
 lupdate.commands = lupdate $${ABS_SOURCES} $${ABS_RESOURCES} -ts $${TRANSLATIONS}
 lrelease.commands = lrelease $${TRANSLATIONS}
 QMAKE_EXTRA_TARGETS += lupdate lrelease
+
+DISTFILES += \
+    components/HelpPage.qml
