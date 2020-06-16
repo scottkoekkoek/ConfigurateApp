@@ -4,7 +4,7 @@
 
 Get your headless Raspian into your WIFI without the Console
 
-![BerryLan](https://berrylan.app/assets/gif/overview.gif)
+![ConfigApp](https://media.giphy.com/media/j45epWIVyDO4mZuVpS/giphy.gif)
 
 ## Download & installation 
 
