@@ -102,7 +102,6 @@ ApplicationWindow {
                 }
             }
         }
-
         onConnectedChanged: {
             print("Start onConnectedChanged")
             print("connectedChanged", networkManager.manager.connected)
@@ -137,7 +136,7 @@ ApplicationWindow {
                 }
                 if (networkManager.manager.wirelessStatus === WirelessSetupManager.WirelessStatusFailed) {
                     connectingToWiFiView.running = false
-                    connectingToWiFiView.text = qsTr("Sorry, the password is wrong.")
+                    connectingToWiFiView.text = qsTr("Invalid password.")
                     connectingToWiFiView.buttonText = qsTr("Try again")
                 }
             }
@@ -161,7 +160,7 @@ ApplicationWindow {
                 case 0:
                 case 1:
                 case 2:
-                    return qsTr("Devices")
+                    return qsTr("Modules")
                 case 3:
                     return qsTr("Network")
                 case 4:
@@ -184,6 +183,8 @@ ApplicationWindow {
             step: {
                 switch (swipeView.currentIndex) {
                 case 0:
+                    ActivityCompat.shouldShowRequestPermissionRationale(context, Manifest.permission.ACCESS_COARSE_LOCATION);
+                    return 1;
                 case 1:
                     return 0;
                 case 2:
@@ -229,10 +230,10 @@ ApplicationWindow {
                     height: swipeView.height
                     width: swipeView.width
                     text: !discovery.bluetoothAvailable
-                          ? qsTr("Bluetooth doesn't seem to be available on this device. BerryLan requires a working Bluetooth connection.")
+                          ? qsTr("Bluetooth is not available on this device. This application requires a Bluetooth connection to function properly.")
                           : !discovery.bluetoothEnabled
-                            ? qsTr("Bluetooth seems to be disabled. Please enable Bluetooth on your device in order to use BerryLan.")
-                            : qsTr("Searching for your\nRaspberry Pi")
+                            ? qsTr("Bluetooth is disabled. Please enable Bluetooth on the device on order to use this application. ")
+                            : qsTr("Searching for modules")
                 }
 
                 // 1
@@ -260,7 +261,7 @@ ApplicationWindow {
                     id: connectingToPiView
                     height: swipeView.height
                     width: swipeView.width
-                    text: qsTr("Connecting to your Raspberry Pi")
+                    text: qsTr("Connecting to the W160x module")
                 }
 
                 // 3
@@ -306,7 +307,7 @@ ApplicationWindow {
                     Button {
                         Layout.alignment: Qt.AlignHCenter
                         visible: networkManager.manager.accessPointModeAvailable
-                        text: qsTr("Open Access Point")
+                        text: qsTr("Add Network")
                         onClicked: {
                             swipeView.currentIndex++
                         }
@@ -376,12 +377,12 @@ ApplicationWindow {
                             enabled: passwordTextField.displayText.length >= 8
                             onClicked: {
                                 if (d.currentAP) {
-                                    connectingToWiFiView.text = qsTr("Connecting the Raspberry Pi to %1").arg(d.currentAP.ssid);
+                                    connectingToWiFiView.text = qsTr("Connecting the W160x module to %1").arg(d.currentAP.ssid);
                                     networkManager.manager.connectWirelessNetwork(d.currentAP.ssid, passwordTextField.text)
                                     sidd = d.currentAP.ssid;
                                     password = passwordTextField.text;
                                 } else {
-                                    connectingToWiFiView.text = qsTr("Opening access point \"%1\" on the Raspberry Pi").arg(ssidTextField.text);
+                                    connectingToWiFiView.text = qsTr("Opening access point \"%1\" on the W160x module.").arg(ssidTextField.text);
                                     networkManager.manager.startAccessPoint(ssidTextField.text, passwordTextField.text)
                                 }
                                 connectingToWiFiView.buttonText = "";

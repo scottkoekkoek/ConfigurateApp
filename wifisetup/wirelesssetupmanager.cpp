@@ -520,10 +520,10 @@ void WirelessSetupManager::processNetworkResponse(const QVariantMap &response)
             emit errorOccurred(tr("Invalid value."));
             break;
         case NetworkServiceResponseNetworkManagerNotAvailable:
-            emit errorOccurred(tr("There is no networkmanager available on the device."));
+            emit errorOccurred(tr("There is no networkmanager available on the module."));
             break;
         case NetworkServiceResponseWirelessNotAvailable:
-            emit errorOccurred(tr("There is no wireless device available on the device."));
+            emit errorOccurred(tr("There is no wireless device available on the module."));
             break;
         default:
             emit errorOccurred(tr("Unknown error occured."));
@@ -560,16 +560,16 @@ void WirelessSetupManager::processWifiResponse(const QVariantMap &response)
             emit errorOccurred(tr("Invalid parameters."));
             break;
         case WirelessServiceResponseNetworkManagerNotAvailable:
-            emit errorOccurred(tr("There is no networkmanager available on the device."));
+            emit errorOccurred(tr("There is no networkmanager available on the module."));
             break;
         case WirelessServiceResponseWirelessNotAvailable:
-            emit errorOccurred(tr("There is no wireless device available on the device."));
+            emit errorOccurred(tr("There is no wireless device available on the module."));
             break;
         case WirelessServiceResponseWirelessNotEnabled:
-            emit errorOccurred(tr("The wireless networking is disabled on the device."));
+            emit errorOccurred(tr("The wireless networking is disabled on the module."));
             break;
         case WirelessServiceResponseNetworkingNotEnabled:
-            emit errorOccurred(tr("The networking is disabled on the device."));
+            emit errorOccurred(tr("The networking is disabled on the module."));
             break;
         default:
             emit errorOccurred(tr("Unknown error occured."));

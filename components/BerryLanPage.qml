@@ -49,40 +49,7 @@ Page {
 
     footer: Item {
         id: footer
-        height: app.iconSize * 1.5 + ((systemProductType === "ios" && Screen.height === 812) ? 10 : 0)
-        RowLayout {
-            anchors { top: parent.top; margins: app.margins; horizontalCenter: parent.horizontalCenter }
-            height: app.iconSize
-            //Bottom text, currently filed with a text using the open source tool nymea.
-            Label {
-                Layout.fillWidth: true
-                Layout.preferredHeight: app.iconSize * .8
-                text: qsTr("an open source tool by")
-                font.pixelSize: app.smallFont
-                horizontalAlignment: Text.AlignRight
-                verticalAlignment: Text.AlignBottom
-            }
-
-            //Icon of nymea with url when you clicked.
-            Image {
-                Layout.preferredHeight: app.iconSize
-                sourceSize.height: app.iconSize
-                source: "../images/nymea.svg"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: Qt.openUrlExternally("https://nymea.io")
-                }
-            }
-
-            //The name nymea
-            Label {
-                Layout.preferredHeight: app.iconSize * .8
-                text: "n y m e a     "
-                font.pixelSize: app.smallFont
-                horizontalAlignment: Text.AlignRight
-                verticalAlignment: Text.AlignBottom
-            }
-        }
+        //height: app.iconSize * 1.5 + ((systemProductType === "ios" && Screen.height === 812) ? 10 : 0)
         //A button that shows on all the pages in them app. When you will go back to the start with any reason,
         //you can press the button and you go back.
         ColorIcon {

@@ -1,38 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="nl">
-<context>
-    <name>BerryLanPage</name>
-    <message>
-        <source>an open source tool by</source>
-        <translation></translation>
-    </message>
-</context>
+<TS version="2.1" language="nl_NL">
 <context>
     <name>BluetoothDevice</name>
     <message>
         <source>Connecting to %1...</source>
-        <translation></translation>
+        <translation>Verbinden met %1...</translation>
     </message>
     <message>
         <source>Connected to %1</source>
-        <translation></translation>
+        <translation>Verbonden met %1</translation>
     </message>
     <message>
         <source>Disconnecting from %1...</source>
-        <translation></translation>
+        <translation>Verbinding verbreken met %1</translation>
     </message>
     <message>
         <source>Discovering services of %1...</source>
-        <translation></translation>
+        <translation>Scannen voor services van %1</translation>
     </message>
     <message>
         <source>%1 connected and discovered.</source>
-        <translation></translation>
+        <translation>%1 verbonden.</translation>
     </message>
     <message>
         <source>%1 disconnected.</source>
-        <translation></translation>
+        <translation>%1 verbinding verbroken.</translation>
     </message>
 </context>
 <context>
@@ -73,135 +66,142 @@
     <name>WirelessSetupManager</name>
     <message>
         <source>Invalid value.</source>
-        <translation></translation>
+        <translation>Ongeldig invoer.</translation>
     </message>
     <message>
-        <source>There is no networkmanager available on the device.</source>
-        <translation></translation>
+        <source>There is no networkmanager available on the module.</source>
+        <translation>Er is geen netwerkmanager aanwezig op de module.</translation>
     </message>
     <message>
-        <source>There is no wireless device available on the device.</source>
-        <translation></translation>
+        <source>There is no wireless device available on the module.</source>
+        <translation>Er is geen draadloze verbinding mogelijk met de module.</translation>
     </message>
     <message>
         <source>Unknown error occured.</source>
-        <translation></translation>
+        <translation>Onbekende fout opgetreden.</translation>
     </message>
     <message>
         <source>Invalid command.</source>
-        <translation></translation>
+        <translation>Ongeldige opdracht.</translation>
     </message>
     <message>
         <source>Invalid parameters.</source>
-        <translation></translation>
+        <translation>Ongeldige parameters.</translation>
     </message>
     <message>
-        <source>The wireless networking is disabled on the device.</source>
-        <translation></translation>
+        <source>The wireless networking is disabled on the module.</source>
+        <translation>Het draadloze netwerk is uitgeschakeld op de module.</translation>
     </message>
     <message>
-        <source>The networking is disabled on the device.</source>
-        <translation></translation>
+        <source>The networking is disabled on the module.</source>
+        <translation>De netwerken zijn uigeschakeld op de module.</translation>
     </message>
 </context>
 <context>
     <name>main</name>
     <message>
-        <source>BerryLan</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Sorry, the password is wrong.</source>
-        <translation></translation>
+        <source>Invalid password.</source>
+        <translation>Ongeldig wachtwoord.</translation>
     </message>
     <message>
         <source>Try again</source>
-        <translation></translation>
+        <translation>Probeer opnieuw</translation>
     </message>
     <message>
-        <source>Devices</source>
-        <translation></translation>
+        <source>Modules</source>
+        <translation>Modules</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation></translation>
+        <translation>Netwerk</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation></translation>
+        <translation>Log in</translation>
     </message>
     <message>
         <source>Connecting</source>
-        <translation></translation>
+        <translation>Verbinden</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation></translation>
+        <translation>Verbonden</translation>
     </message>
     <message>
-        <source>Bluetooth doesn&apos;t seem to be available on this device. BerryLan requires a working Bluetooth connection.</source>
-        <translation></translation>
+        <source>Bluetooth is not available on this device. This application requires a Bluetooth connection to function properly. </source>
+        <translation>Bluetooth is niet beschikbaar op dit apparaat. Deze applicatie heeft een werkende Bluetooth connenctie nodig om te kunnen functioneren. </translation>
     </message>
     <message>
-        <source>Bluetooth seems to be disabled. Please enable Bluetooth on your device in order to use BerryLan.</source>
-        <translation></translation>
+        <source>Bluetooth is disabled. Please enable Bluetooth on the device on order to use this application.</source>
+        <translation>Bluetooth is uitgeschakeld. Zet Bluetooth aan op het apparaat om de app te kunnen gebruiken. </translation>
     </message>
     <message>
-        <source>Searching for your
-Raspberry Pi</source>
-        <translation></translation>
+        <source>Searching for modules</source>
+        <translation>Zoeken naar modules</translation>
     </message>
     <message>
-        <source>Connecting to your Raspberry Pi</source>
-        <translation></translation>
+        <source>Connecting to the W160x module.</source>
+        <translation>Verbinden met de W160x module.</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation></translation>
+        <translation>OK</translation>
     </message>
     <message>
-        <source>Connecting the Raspberry Pi to %1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Thanks for using BerryLan!</source>
-        <translation></translation>
+        <source>Connecting the W160x Module to %1</source>
+        <translation>Module verbind met %1</translation>
     </message>
     <message>
         <source>Sorry, an unexpected error happened.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Er is een onverwachte fout opgetreden</translation>
     </message>
     <message>
-        <source>Open Access Point</source>
-        <translation type="unfinished"></translation>
+        <source>Add Network</source>
+        <translation type="unfinished">Netwerk toevoegen</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Naam</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wachtwoord</translation>
     </message>
     <message>
-        <source>Opening access point &quot;%1&quot; on the Raspberry Pi</source>
-        <translation type="unfinished"></translation>
+        <source>Opening access point &quot;%1&quot; on the W160x Module</source>
+        <translation type="unfinished">Verbinding maken op de W160x</translation>
     </message>
     <message>
-        <source>Access point name: %1</source>
-        <translation type="unfinished"></translation>
+        <source>SSID: %1</source>
+        <translation type="unfinished">SSID: %1</translation>
     </message>
     <message>
         <source>IP Address: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP-adres: %1</translation>
     </message>
     <message>
         <source>IP address copied to clipboard.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IP-adres gekopieerd naar het klembord</translation>
     </message>
     <message>
         <source>Close access point</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Netwerk sluiten</translation>
+    </message>
+    <message>
+        <source>back</source>
+        <translation>terug</translation>
+    </message>
+    <message>
+        <source>select all</source>
+        <translation>alles selecteren</source>
+    </message>
+    <message>
+        <source>next</source>
+        <translation>volgende</translation>
     </message>
 </context>
+/*<context>
+    <name>BerryLanHeader</name>
+
+</context>*/
 </TS>
