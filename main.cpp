@@ -13,6 +13,8 @@
 
 #ifdef Q_OS_ANDROID
 #include <QtAndroidExtras/QtAndroid>
+#include <QtAndroid>
+const QVector<QString> permissions({"android.permission.ACCESS_COARSE_LOCATION"});
 #endif
 
 #include "wifisetup/bluetoothdiscovery.h"
@@ -37,6 +39,15 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+
+    for(const QString &permission : permissions){
+            auto result = QtAndroid::checkPermission(permission);
+            if(result == QtAndroid::PermissionResult::Denied){
+                auto resultHash = QtAndroid::requestPermissionsSync(QStringList({permission}));
+                if(resultHash[permission] == QtAndroid::PermissionResult::Denied)
+                    return 0;
+            }
+        }
 
     QCommandLineParser parser;
     QCommandLineOption demoOption("demo");
