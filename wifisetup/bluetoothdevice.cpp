@@ -23,6 +23,8 @@
 #include "bluetoothdevice.h"
 #include "unistd.h"
 
+int errorCount = 0;
+
 BluetoothDevice::BluetoothDevice(const QBluetoothDeviceInfo &deviceInfo, QObject *parent) :
     QObject(parent),
     m_deviceInfo(deviceInfo),
@@ -119,14 +121,20 @@ void BluetoothDevice::onDisconnected()
 void BluetoothDevice::onDeviceError(const QLowEnergyController::Error &error)
 {
     qWarning() << "BluetoothDevice: Error" << name() << addressString() << ": " << error << m_controller->errorString();
-
-    disconnectDevice();
-    qDebug() << "QLoweEnergyController reconnecting...";
-    m_controller->connectToDevice();
+    if (errorCount < 3){
+        disconnectDevice();
+        qDebug() << "QLoweEnergyController reconnecting...";
+        m_controller->connectToDevice();
+        errorCount++;
+    }
+    else if (errorCount == 3){
+        setConnected(false);
+    }
 }
 
 void BluetoothDevice::onDeviceStateChanged(const QLowEnergyController::ControllerState &state)
 {
+    qDebug() << "Error Count: " << errorCount;
     switch (state) {
     case QLowEnergyController::ConnectingState:
         qDebug() << "BluetoothDevice: Connecting...";
