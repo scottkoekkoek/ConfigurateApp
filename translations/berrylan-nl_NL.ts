@@ -200,8 +200,4 @@
         <translation>volgende</translation>
     </message>
 </context>
-/*<context>
-    <name>BerryLanHeader</name>
-
-</context>*/
 </TS>
