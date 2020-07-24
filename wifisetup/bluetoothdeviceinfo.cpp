@@ -26,15 +26,12 @@
 
 #include<QDebug>
 
-BluetoothDeviceInfo::BluetoothDeviceInfo()
-{
-    selected_ = false;
-}
 
 BluetoothDeviceInfo::BluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo)
 {
     m_deviceInfo = deviceInfo;
     selected_ = false;
+    ipAddress_ = false;
 }
 
 QString BluetoothDeviceInfo::address() const
@@ -68,6 +65,18 @@ void BluetoothDeviceInfo::setSelected(bool selected)
 {
     selected_ = selected;
     emit selectedChanged();
+}
+
+bool BluetoothDeviceInfo::ipAddress()
+{
+    return ipAddress_;
+    emit ipAddressChanged();
+}
+
+void BluetoothDeviceInfo::setIpAddress(bool ipAddress)
+{
+    ipAddress_ = ipAddress;
+    emit ipAddressChanged();
 }
 
 QBluetoothDeviceInfo BluetoothDeviceInfo::getBluetoothDeviceInfo() const

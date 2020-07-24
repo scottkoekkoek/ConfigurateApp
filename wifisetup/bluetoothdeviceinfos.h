@@ -37,7 +37,8 @@ public:
         BluetoothDeviceInfoRoleName = Qt::DisplayRole,
         BluetoothDeviceInfoRoleAddress,
         BluetoothDeviceInfoRoleLe,
-        BluetoothDeviceInfoRoleSelected
+        BluetoothDeviceInfoRoleSelected,
+        NetwerkInfoIPAddress
     };
 
     explicit BluetoothDeviceInfos(QObject *parent = nullptr);

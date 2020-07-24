@@ -49,6 +49,19 @@ ItemDelegate {
                     print("After setting selected is the state: ", discovery.deviceInfos.get(index).selected)
                 }
             }
+            Label {
+                visible: swipeView.currentIndex == 6
+                Layout.fillWidth: true
+                text: if (ipAddress){
+                          "Connected"
+                      }
+                      else{
+                          "Disconnected"
+                      }
+
+                font.pixelSize: app.largeFont
+                elide: Text.ElideRight
+            }
         }
 
         //Horizontale line between the bluetooth devices in the list. To create for each device a box.

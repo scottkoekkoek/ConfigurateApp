@@ -53,6 +53,8 @@ QVariant BluetoothDeviceInfos::data(const QModelIndex &index, int role) const
         return deviceInfo->isLowEnergy();
     } else if(role == BluetoothDeviceInfoRoleSelected){
         return deviceInfo->selected();
+    } else if(role == NetwerkInfoIPAddress){
+        return deviceInfo->ipAddress();
     }
 
     return QVariant();
@@ -109,5 +111,6 @@ QHash<int, QByteArray> BluetoothDeviceInfos::roleNames() const
     roles[BluetoothDeviceInfoRoleAddress] = "address";
     roles[BluetoothDeviceInfoRoleLe] = "lowEnergy";
     roles[BluetoothDeviceInfoRoleSelected] = "Selected";
+    roles[NetwerkInfoIPAddress] = "ipAddress";
     return roles;
 }

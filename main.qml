@@ -1,8 +1,8 @@
-import QtQuick 2.9
-import QtQuick.Window 2.3
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.3
-import QtQuick.Controls.Material 2.2
+import QtQuick 2.12
+import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls.Material 2.12
 import BerryLan 1.0
 import "components"
 
@@ -432,43 +432,24 @@ ApplicationWindow {
                                 }
                             }
                         }
-                        Button {
-                            Layout.alignment: Qt.AlignHCenter
-                            visible: d.accessPointMode
-                            text: qsTr("Close access point")
-                            onClicked: {
-                                networkManager.manager.disconnectWirelessNetwork();
+                        ListView {
+                            id: connectView
+                            height: swipeView.height
+                            width: swipeView.width
+                            model: discovery.deviceInfos
+                            clip: true
+                            ColorIcon {
+                                Layout.preferredHeight: app.iconSize
+                                Layout.preferredWidth: app.iconSize
+                                //name: "../images/next.svg"
                             }
-                        }
-
-                        Item {
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            ColumnLayout {
-                                anchors.centerIn: parent
+                            delegate: BerryLanItemDelegate {
                                 width: parent.width
-                                spacing: app.margins * 4
-                                Label {
-                                    text: qsTr("Thanks for using the app!")
-                                    font.pixelSize: app.largeFont
-                                    Layout.fillWidth: true
-                                    wrapMode: Text.WordWrap
-                                    horizontalAlignment: Text.AlignHCenter
-                                }
-                                ColorIcon {
-                                    Layout.preferredHeight: app.iconSize
-                                    Layout.preferredWidth: app.iconSize
-                                    Layout.alignment: Qt.AlignHCenter
-                                    name: "../images/github.svg"
+                                text: name
 
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        onClicked: {
-                                            Qt.openUrlExternally("https://github.com/nymea/berrylan")
-                                        }
-                                    }
-                                }
+                                //iconSource: "../images/bluetooth.svg"
                             }
+
                         }
                     }
                 }

@@ -28,12 +28,14 @@
 #include <QBluetoothAddress>
 #include <QBluetoothDeviceInfo>
 
+
 class BluetoothDeviceInfo : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ name NOTIFY deviceChanged)
     Q_PROPERTY(QString address READ address NOTIFY deviceChanged)
     Q_PROPERTY(bool selected READ selected WRITE setSelected NOTIFY selectedChanged)
+    Q_PROPERTY(bool ipAddress READ ipAddress WRITE setIpAddress NOTIFY ipAddressChanged)
 
 public:
     BluetoothDeviceInfo();
@@ -44,6 +46,8 @@ public:
     bool isLowEnergy() const;
     bool selected();
     void setSelected(bool selected);
+    bool ipAddress();
+    void setIpAddress(bool ipAddress);
 
     QBluetoothDeviceInfo getBluetoothDeviceInfo() const;
     void setBluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo);
@@ -51,10 +55,12 @@ public:
 signals:
     void deviceChanged();
     void selectedChanged();
+    void ipAddressChanged();
 
 private:
     QBluetoothDeviceInfo m_deviceInfo;
     bool selected_;
+    bool ipAddress_;
 };
 
 #endif // BLUETOOTHDEVICEINFO_H
