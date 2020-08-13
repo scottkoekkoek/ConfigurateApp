@@ -53,5 +53,7 @@
         <file>images/wifi-100.svg</file>
         <file>images/forward.svg</file>
         <file>translations/berrylan-nl_NL.qm</file>
+        <file>images/red.svg</file>
+        <file>images/green.svg</file>
     </qresource>
 </RCC>
