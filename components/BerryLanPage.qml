@@ -66,7 +66,7 @@ Page {
 
     footer: Item {
         id: footer
-        //height: app.iconSize * 1.5 + ((systemProductType === "ios" && Screen.height === 812) ? 10 : 0)
+        height: app.iconSize * 1.5 + ((systemProductType === "ios" && Screen.height === 812) ? 10 : 0)
         //A button that shows on all the pages in them app. When you will go back to the start with any reason,
         //you can press the button and you go back.
         ColorIcon {

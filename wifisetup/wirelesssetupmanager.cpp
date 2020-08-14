@@ -322,6 +322,7 @@ void WirelessSetupManager::disconnectWirelessNetwork()
         qWarning() << "WifiSetupManager: Could not disconnect wireless ssid. Characteristic is not valid";
         return;
     }
+    m_accessPoints->clearModel();
 
     QVariantMap request;
     request.insert("c", static_cast<int>(WirelessServiceCommandDisconnect));
