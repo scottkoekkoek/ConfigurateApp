@@ -26,10 +26,6 @@
 
 #include <QDebug>
 
-#include <vector>
-#include <string>
-using namespace std;
-
 
 BluetoothDeviceInfo::BluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo)
 {
@@ -51,20 +47,8 @@ QString BluetoothDeviceInfo::address() const
 
 QString BluetoothDeviceInfo::name() const
 {
-    //if(selected_)
         return m_deviceInfo.name();
-    //else
-      //  return m_deviceInfo.name() +" not";
-
 }
-
-/*QString BluetoothDeviceInfo::test() const
-{
-    if(selected_)
-        return " test true" ;
-    else
-        return " test" + QString::number(m_deviceInfo.rssi());
-}*/
 
 bool BluetoothDeviceInfo::isLowEnergy() const
 {
@@ -82,8 +66,7 @@ void BluetoothDeviceInfo::setSelected(bool selected)
     selected_ = selected;
     emit selectedChanged();
 }
-/************************************************************************/
-//Hier moet het uiteindelijk opgeslagen worden
+
 QString BluetoothDeviceInfo::ipAddress()
 {
     qDebug() << "ipAddresses(): " << ipAddress_;
@@ -126,7 +109,6 @@ bool BluetoothDeviceInfo::connectedNetwork()
     return connect;
 }
 
-/************************************************************************/
 QBluetoothDeviceInfo BluetoothDeviceInfo::getBluetoothDeviceInfo() const
 {
     return m_deviceInfo;

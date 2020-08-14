@@ -252,7 +252,6 @@ void WirelessSetupManager::enableWireless(bool enable)
 
     m_netwokService->writeCharacteristic(characteristic, enable ? QByteArray::fromHex("02") : QByteArray::fromHex("03"));
 }
-
 void WirelessSetupManager::connectWirelessNetwork(const QString &ssid, const QString &password)
 {
     qDebug() << "WifiSetupManager: Connect wireless network" << ssid << password;
@@ -529,7 +528,6 @@ void WirelessSetupManager::processNetworkResponse(const QVariantMap &response)
             emit errorOccurred(tr("Unknown error occured."));
             break;
         }
-
         return;
     }
 
@@ -575,7 +573,6 @@ void WirelessSetupManager::processWifiResponse(const QVariantMap &response)
             emit errorOccurred(tr("Unknown error occured."));
             break;
         }
-
         return;
     }
 
@@ -1013,17 +1010,13 @@ void WirelessSetupManager::jsonFileCorrector()
         }
         for(; go && counter < m_inputDataStream.length() ; ++counter){
             char check = m_inputDataStream[counter];
-            qDebug() << "Check1: " << check;
             if (start && counter < m_inputDataStream.length()){
-                qDebug() << "16";
                 if (check == '['){
-                    qDebug() << "1";
                     start = false;
                     block = true;
                 }
             }
             if (check == '{' && counter > 3 && start){
-                    qDebug() << "15";
                     start = false;
                     --counter;
             }
@@ -1032,41 +1025,32 @@ void WirelessSetupManager::jsonFileCorrector()
                 gotHim = true;
                 for(; gotHim && counter < m_inputDataStream.length(); ++counter){
                     char check = m_inputDataStream[counter];
-                    qDebug() << "Check2: " << check;
                     if (check == '{' && search_e){
-                        qDebug() << "Knip 11 vanaf " << splitter << " tot " << m_inputDataStream.length();
                         m_inputDataStream.remove(splitter,m_inputDataStream.length()-splitter);
                         m_inputDataStream.insert(splitter, "],\"r\":0}\n");
                         go = false;
                     }
                     else if (check == 'e' && !search_e){
-                        qDebug() << '3';
                         search_e = true;
                     }
                     else if (check == 'i' && search_comma && search_e && !block){
-                        qDebug() << "17";
                         search_i = true;
                         search_comma = false;
                     }
                     else if (check == 'm' && search_comma && search_e && !search_m){
-                        qDebug() << "5";
                         search_m = true;
                         search_comma = false;
                     }
                     else if (check == 'p' && search_comma && search_m && search_e && !search_p){
-                        qDebug() << "6";
                         search_p = true;
                         search_comma = false;
                     }
                     else if (check == 's' && search_comma && search_p && search_m && search_e && !search_s){
-                        qDebug() << "7";
                         search_s = true;
                         search_comma = false;
                     }
                     else if (check == '}'){
-                        qDebug() << "8";
                         if (search_e && search_m && search_p && search_s){
-                            qDebug() << "12";
                             search_e = false;
                             search_m = false;
                             search_p = false;
@@ -1076,7 +1060,6 @@ void WirelessSetupManager::jsonFileCorrector()
                             counter--;
                         }
                         else{
-                            qDebug() << "Knip 9";
                             m_inputDataStream.remove(splitter,m_inputDataStream.length());
                             m_inputDataStream.insert(splitter, "],\"r\":0}\n");
                             //jsonFileChecked = true;
@@ -1084,13 +1067,11 @@ void WirelessSetupManager::jsonFileCorrector()
                         }
                     }
                     else if (search_comma){
-                        qDebug() << "Knip 13";
                         m_inputDataStream.remove(splitter,m_inputDataStream.length());
                         m_inputDataStream.insert(splitter, "],\"r\":0}\n");
                         go = false;
                     }
                     if (check == ','){
-                        qDebug() << "4";
                         search_comma = true;
                         ++counter;
 
@@ -1100,11 +1081,9 @@ void WirelessSetupManager::jsonFileCorrector()
 
             }
             else if(check == ']' && !start && block){
-                qDebug() << "10";
                 go = false;
             }
             else if(!block && !start){
-                qDebug() << "14";
                 go = false;
             }
         }
