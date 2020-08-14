@@ -82,6 +82,7 @@ BluetoothDeviceInfo *BluetoothDeviceInfos::set(int index, bool selected)
     }
     BluetoothDeviceInfo *bdi = m_deviceInfos.at(index);
     bdi->setSelected(selected);
+    emit countChanged();
     return bdi;
 }
 
@@ -92,6 +93,15 @@ void BluetoothDeviceInfos::addBluetoothDeviceInfo(BluetoothDeviceInfo *deviceInf
     beginInsertRows(QModelIndex(), m_deviceInfos.count(), m_deviceInfos.count());
     m_deviceInfos.append(deviceInfo);
     endInsertRows();
+    emit countChanged();
+}
+
+void BluetoothDeviceInfos::removeBluetoothDeviceInfo(int index)
+{
+    beginRemoveRows(QModelIndex(), index, index);
+    removeRow(index, QModelIndex());
+    endRemoveRows();
+
     emit countChanged();
 }
 

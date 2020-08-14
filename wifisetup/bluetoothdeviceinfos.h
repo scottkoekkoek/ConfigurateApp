@@ -53,6 +53,7 @@ public:
     Q_INVOKABLE BluetoothDeviceInfo *set(int index, bool selected);
 
     void addBluetoothDeviceInfo(BluetoothDeviceInfo *deviceInfo);
+    Q_INVOKABLE void removeBluetoothDeviceInfo(int index);
     Q_INVOKABLE void clearModel();
 
 signals:
