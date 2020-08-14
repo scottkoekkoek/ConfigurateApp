@@ -24,14 +24,18 @@
 
 #include <QBluetoothUuid>
 
-#include<QDebug>
+#include <QDebug>
+
+#include <vector>
+#include <string>
+using namespace std;
 
 
 BluetoothDeviceInfo::BluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo)
 {
     m_deviceInfo = deviceInfo;
     selected_ = false;
-    ipAddress_ = false;
+    ipAddress_ = "";
 }
 
 QString BluetoothDeviceInfo::address() const
@@ -47,8 +51,20 @@ QString BluetoothDeviceInfo::address() const
 
 QString BluetoothDeviceInfo::name() const
 {
-    return m_deviceInfo.name();
+    //if(selected_)
+        return m_deviceInfo.name();
+    //else
+      //  return m_deviceInfo.name() +" not";
+
 }
+
+/*QString BluetoothDeviceInfo::test() const
+{
+    if(selected_)
+        return " test true" ;
+    else
+        return " test" + QString::number(m_deviceInfo.rssi());
+}*/
 
 bool BluetoothDeviceInfo::isLowEnergy() const
 {
@@ -66,19 +82,51 @@ void BluetoothDeviceInfo::setSelected(bool selected)
     selected_ = selected;
     emit selectedChanged();
 }
-
-bool BluetoothDeviceInfo::ipAddress()
+/************************************************************************/
+//Hier moet het uiteindelijk opgeslagen worden
+QString BluetoothDeviceInfo::ipAddress()
 {
+    qDebug() << "ipAddresses(): " << ipAddress_;
     return ipAddress_;
     emit ipAddressChanged();
 }
 
-void BluetoothDeviceInfo::setIpAddress(bool ipAddress)
+void BluetoothDeviceInfo::setIpAddress(QString ipAddress)
 {
+    qDebug() << "setIpAddress1: " << ipAddress;
     ipAddress_ = ipAddress;
+    qDebug() << "setIpAddress: " << ipAddress_;
     emit ipAddressChanged();
+    emit deviceChanged();
 }
 
+bool BluetoothDeviceInfo::connectedNetwork()
+{
+    qDebug() << "Het IP Address is: " << ipAddress_;
+    QRegExp rx("(\\.)"); //RegEx for '.'
+    QStringList query = ipAddress_.split(rx);
+    if (query.length() == 4){
+        int counterArray = 0;
+        while(counterArray < 4){
+            if (query[counterArray] > 0 && query[counterArray] < 255){
+                connect = true;
+            }
+            else{
+                connect = false;
+                qDebug() << "Device is not connected to the network!";
+                return connect;
+            }
+            counterArray++;
+        }
+    }
+    else{
+        connect = false;
+    }
+    qDebug() << "Device connecting to network: " << connect;
+    return connect;
+}
+
+/************************************************************************/
 QBluetoothDeviceInfo BluetoothDeviceInfo::getBluetoothDeviceInfo() const
 {
     return m_deviceInfo;
