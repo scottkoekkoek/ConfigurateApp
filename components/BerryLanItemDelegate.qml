@@ -52,13 +52,7 @@ ItemDelegate {
             Label {
                 visible: swipeView.currentIndex == 6
                 Layout.fillWidth: true
-                text: if (ipAddress){
-                          "Connected"
-                      }
-                      else{
-                          "Disconnected"
-                      }
-
+                text: networkManager.bluetoothDeviceInfo.connectedNetwork ? "Not connected" : ipAddress
                 font.pixelSize: app.largeFont
                 elide: Text.ElideRight
             }

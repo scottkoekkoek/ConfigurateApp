@@ -60,6 +60,7 @@ void WirelessAccessPoint::setMacAddress(const QString &macAddress)
 
 QString WirelessAccessPoint::hostAddress() const
 {
+    qDebug() << "De hostaddress is: " << m_hostAddress;
     return m_hostAddress;
 }
 

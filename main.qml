@@ -24,6 +24,7 @@ ApplicationWindow {
     property int index
     property int selectedCount: 0
     property int currentCount: 0
+    property int count: 0
     property string sidd
     property string password
     property bool busy: false
@@ -69,15 +70,17 @@ ApplicationWindow {
             print("Busy: ", busy);
             if (networkManager.manager.initialized) {
                 if(busy) {
-                print("Verbonden!");
-                print("AccesPoint Avaiable: ", networkManager.manager.accessPointModeAvailable);
-                print("SSID: ", ssidTextField.text);
-                print("Password: ", passwordTextField.text);
-                networkManager.manager.connectWirelessNetwork(ssidTextField.text, passwordTextField.text);
-                print("Ingevoerd ssid");
+                    print("Verbonden!");
+                    print("AccesPoint Avaiable: ", networkManager.manager.accessPointModeAvailable);
+                    print("SSID: ", ssidTextField.text);
+                    print("Password: ", passwordTextField.text);
+                    networkManager.manager.connectWirelessNetwork(ssidTextField.text, passwordTextField.text);
+                    print("Ingevoerd ssid");
+                    if (networkManager.manager.currentConnection.hostAddress.length != 0){
+                        networkManager.bluetoothDeviceInfo.ipAddress = networkManager.manager.currentConnection.hostAddress;
+                    }
                 }
                 else{
-                    print("Volgende 1");
                     swipeView.currentIndex++;
                 }
             } else {
@@ -88,7 +91,6 @@ ApplicationWindow {
                     if (discovery.deviceInfos.count <= networkManager.deviceIndex){
                         print("Klaar! uit init");
                         busy = false
-                        print("Volgende 2");                        
                         swipeView.currentIndex++;
                     }
                     print("Index erna: ",networkManager.deviceIndex);
@@ -212,7 +214,18 @@ ApplicationWindow {
                     print("Connectie gaat sluiten");
                     busy = true;
                     networkManager.manager.disconnectDevice();
+                    print("Hij komt hier")
+                    while(discovery.deviceInfos.count > count){
+                        print("Komt hij hier ook?")
+                        if(!discovery.deviceInfos.get(count).selected){
 
+                            print("remove item ", count)
+                            discovery.deviceInfos.removeBluetoothDeviceInfo(count)
+                            print("end removing")
+                            //connectView.discovery.deviceInfos.remove(networkManager.deviceIndex)
+                        }
+                        count++
+                    }
                     return 5;
                 case 6:
                     return 8;
@@ -385,9 +398,13 @@ ApplicationWindow {
                                     connectingToWiFiView.text = qsTr("Opening access point \"%1\" on the W160x module.").arg(ssidTextField.text);
                                     networkManager.manager.startAccessPoint(ssidTextField.text, passwordTextField.text)
                                 }
+
                                 connectingToWiFiView.buttonText = "";
                                 connectingToWiFiView.running = true
 
+                                if (networkManager.manager.currentConnection.hostAddress.length != 0){
+                                    networkManager.bluetoothDeviceInfo.ipAddress = networkManager.manager.currentConnection.hostAddress;
+                                }
                                 swipeView.currentIndex++
                             }
                         }
@@ -416,22 +433,7 @@ ApplicationWindow {
 
                     ColumnLayout {
                         anchors.fill: parent
-                        Label {
-                            Layout.fillWidth: true
-                            Layout.margins: app.margins
-                            text: "All the "+selectedCount+" Wamm(s) are configurated!"
-                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                            font.pixelSize: app.largeFont
-                            font.bold: true
-                            horizontalAlignment: Text.AlignHCenter
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    clipBoard.text = networkManager.manager.currentConnection.hostAddress
-                                    parent.ToolTip.show(qsTr("IP address copied to clipboard."), 2000)
-                                }
-                            }
-                        }
+
                         ListView {
                             id: connectView
                             height: swipeView.height
@@ -441,16 +443,17 @@ ApplicationWindow {
                             ColorIcon {
                                 Layout.preferredHeight: app.iconSize
                                 Layout.preferredWidth: app.iconSize
-                                //name: "../images/next.svg"
                             }
                             delegate: BerryLanItemDelegate {
                                 width: parent.width
                                 text: name
-
-                                //iconSource: "../images/bluetooth.svg"
+                                iconSource: {
+                                            ipAddress !== ""
+                                            ? "../images/green.svg"
+                                            : "../images/red.svg"
+                                }
                             }
-
-                        }
+                        }                    
                     }
                 }
             }

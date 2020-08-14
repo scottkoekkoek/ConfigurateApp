@@ -35,7 +35,8 @@ class BluetoothDeviceInfo : public QObject
     Q_PROPERTY(QString name READ name NOTIFY deviceChanged)
     Q_PROPERTY(QString address READ address NOTIFY deviceChanged)
     Q_PROPERTY(bool selected READ selected WRITE setSelected NOTIFY selectedChanged)
-    Q_PROPERTY(bool ipAddress READ ipAddress WRITE setIpAddress NOTIFY ipAddressChanged)
+    Q_PROPERTY(QString ipAddress READ ipAddress WRITE setIpAddress NOTIFY ipAddressChanged)
+    Q_PROPERTY(bool connectedNetwork READ connectedNetwork NOTIFY connectedNetworkChanged)
 
 public:
     BluetoothDeviceInfo();
@@ -46,8 +47,9 @@ public:
     bool isLowEnergy() const;
     bool selected();
     void setSelected(bool selected);
-    bool ipAddress();
-    void setIpAddress(bool ipAddress);
+    QString ipAddress();
+    bool connectedNetwork();
+    void setIpAddress(QString ipAddress);
 
     QBluetoothDeviceInfo getBluetoothDeviceInfo() const;
     void setBluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo);
@@ -56,11 +58,13 @@ signals:
     void deviceChanged();
     void selectedChanged();
     void ipAddressChanged();
+    void connectedNetworkChanged();
 
 private:
     QBluetoothDeviceInfo m_deviceInfo;
     bool selected_;
-    bool ipAddress_;
+    QString ipAddress_;
+    bool connect;
 };
 
 #endif // BLUETOOTHDEVICEINFO_H
