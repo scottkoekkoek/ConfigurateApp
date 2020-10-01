@@ -79,8 +79,12 @@ ColumnLayout {
             visible: root.nextButtonVisible
             onClicked:{
                 //Search the first selected device to connect.
+                print("deviceindex = ", networkManager.deviceIndex)
+                print("Selected = ", discovery.deviceInfos.get(networkManager.deviceIndex).selected)
                 while(!discovery.deviceInfos.get(networkManager.deviceIndex).selected){
-                    networkManager.deviceIndex = networkManager.deviceIndex + 1;
+                    if(discovery.deviceInfos.get(networkManager.deviceIndex).selected !== NULL){
+                        networkManager.deviceIndex = networkManager.deviceIndex + 1;
+                    }
                 }
                 print("Device with the index ", networkManager.deviceIndex, " is the first WAMM to connect")
                 networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
