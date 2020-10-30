@@ -31,7 +31,7 @@
 
 /*******************************************************************************************************************/
 //Universally unique identifier wordt gedefineerd
-
+/*
 static QBluetoothUuid wifiServiceUuid =                 QBluetoothUuid(QUuid("e28190f7-a335-4a38-978b-10a9eeeafa5f"));
 static QBluetoothUuid wifiCommanderCharacteristicUuid = QBluetoothUuid(QUuid("b5c3673d-93bf-4137-8c7e-c8ecbcbb4242"));
 static QBluetoothUuid wifiResponseCharacteristicUuid =  QBluetoothUuid(QUuid("c65c5c6b-2d17-486e-972d-6e1dadb1d9c5"));
@@ -48,7 +48,44 @@ static QBluetoothUuid wirelessEnabledCharacteristicUuid =   QBluetoothUuid(QUuid
 static QBluetoothUuid systemServiceUuid =                 QBluetoothUuid(QUuid("1b4be148-ac7d-4357-86fe-1922fbb88ba1"));
 static QBluetoothUuid systemCommanderCharacteristicUuid = QBluetoothUuid(QUuid("9f774759-fa4d-42a3-9cac-99ea550cf7c0"));
 static QBluetoothUuid systemResponseCharacteristicUuid =  QBluetoothUuid(QUuid("da7205aa-df8c-4169-943c-3364c4fb8322"));
+*/
 
+static QBluetoothUuid wifiServiceUuid =                 QBluetoothUuid(QUuid("e081fec0-f757-4449-b9c9-bfa83133f7fc"));
+static QBluetoothUuid wifiCommanderCharacteristicUuid = QBluetoothUuid(QUuid("e081fec1-f757-4449-b9c9-bfa83133f7fc"));
+static QBluetoothUuid wifiResponseCharacteristicUuid =  QBluetoothUuid(QUuid("e081fec2-f757-4449-b9c9-bfa83133f7fc"));
+static QBluetoothUuid wifiStatusCharacteristicUuid =    QBluetoothUuid(QUuid("e081fec3-f757-4449-b9c9-bfa83133f7fc"));
+static QBluetoothUuid wifiModeCharacteristicUuid =      QBluetoothUuid(QUuid("e081fec4-f757-4449-b9c9-bfa83133f7fc"));
+
+static QBluetoothUuid networkServiceUuid =                  QBluetoothUuid(QUuid("ef6d6610-b8af-49e0-9eca-ab343513641c"));
+static QBluetoothUuid networkStatusCharacteristicUuid =     QBluetoothUuid(QUuid("ef6d6611-b8af-49e0-9eca-ab343513641c"));
+static QBluetoothUuid networkCommanderCharacteristicUuid =  QBluetoothUuid(QUuid("ef6d6612-b8af-49e0-9eca-ab343513641c"));
+static QBluetoothUuid networkResponseCharacteristicUuid =   QBluetoothUuid(QUuid("ef6d6613-b8af-49e0-9eca-ab343513641c"));
+static QBluetoothUuid networkingEnabledCharacteristicUuid = QBluetoothUuid(QUuid("ef6d6614-b8af-49e0-9eca-ab343513641c"));
+static QBluetoothUuid wirelessEnabledCharacteristicUuid =   QBluetoothUuid(QUuid("ef6d6615-b8af-49e0-9eca-ab343513641c"));
+
+static QBluetoothUuid systemServiceUuid =                 QBluetoothUuid(QUuid("e081fed0-f757-4449-b9c9-bfa83133f7fc"));
+static QBluetoothUuid systemCommanderCharacteristicUuid = QBluetoothUuid(QUuid("e081fed1-f757-4449-b9c9-bfa83133f7fc"));
+static QBluetoothUuid systemResponseCharacteristicUuid =  QBluetoothUuid(QUuid("e081fed2-f757-4449-b9c9-bfa83133f7fc"));
+
+/*
+static QBluetoothUuid networkServiceUuid =                  QBluetoothUuid(QUuid("7e6da1e0-8605-4c90-bc25-1da212251205"));
+static QBluetoothUuid networkStatusCharacteristicUuid =     QBluetoothUuid(QUuid("7e6da1e1-8605-4c90-bc25-1da212251205"));
+static QBluetoothUuid networkCommanderCharacteristicUuid =  QBluetoothUuid(QUuid("7e6da1e2-8605-4c90-bc25-1da212251205"));
+static QBluetoothUuid networkResponseCharacteristicUuid =   QBluetoothUuid(QUuid("7e6da1e3-8605-4c90-bc25-1da212251205"));
+static QBluetoothUuid networkingEnabledCharacteristicUuid = QBluetoothUuid(QUuid("7e6da1e4-8605-4c90-bc25-1da212251205"));
+static QBluetoothUuid wirelessEnabledCharacteristicUuid =   QBluetoothUuid(QUuid("7e6da1e5-8605-4c90-bc25-1da212251205"));
+
+static QBluetoothUuid wifiServiceUuid =                 QBluetoothUuid(QUuid("da7205a0-df8c-4169-943c-3364c4fb8322"));
+static QBluetoothUuid wifiCommanderCharacteristicUuid = QBluetoothUuid(QUuid("da7205a1-df8c-4169-943c-3364c4fb8322"));
+static QBluetoothUuid wifiResponseCharacteristicUuid =  QBluetoothUuid(QUuid("da7205a2-df8c-4169-943c-3364c4fb8322"));
+static QBluetoothUuid wifiStatusCharacteristicUuid =     QBluetoothUuid(QUuid("da7205a3-df8c-4169-943c-3364c4fb8322"));
+static QBluetoothUuid wifiModeCharacteristicUuid =      QBluetoothUuid(QUuid("da7205a4-df8c-4169-943c-3364c4fb8322"));
+
+static QBluetoothUuid systemServiceUuid =                 QBluetoothUuid(QUuid("c65c5c60-2d17-486e-972d-6e1dadb1d9c5"));
+static QBluetoothUuid systemCommanderCharacteristicUuid = QBluetoothUuid(QUuid("c65c5c61-2d17-486e-972d-6e1dadb1d9c5"));
+static QBluetoothUuid systemResponseCharacteristicUuid =  QBluetoothUuid(QUuid("c65c5c62-2d17-486e-972d-6e1dadb1d9c5"));
+static QBluetoothUuid systemUpdateCharacteristicUuid =    QBluetoothUuid(QUuid("c65c5c63-2d17-486e-972d-6e1dadb1d9c5"));
+*/
 /*******************************************************************************************************************/
 
 WirelessSetupManager::WirelessSetupManager(const QBluetoothDeviceInfo &deviceInfo, QObject *parent) :
@@ -280,48 +317,21 @@ void WirelessSetupManager::connectWirelessNetwork(const QString &ssid, const QSt
     streamData(request);
 }
 
-void WirelessSetupManager::startAccessPoint(const QString &ssid, const QString &password)
-{
-    qDebug() << "WifiSetupManager: Start wireless access point using SSID:" << ssid << " password:" << password;
-
-    m_ssid = ssid;
-    m_password = password;
-
-    if (!m_wifiService) {
-        qWarning() << "WifiSetupManager: Could not set wireless network. Service not valid";
-        return;
-    }
-
-    QLowEnergyCharacteristic ssidCharacteristic = m_wifiService->characteristic(wifiCommanderCharacteristicUuid);
-    if (!ssidCharacteristic.isValid()) {
-        qWarning() << "WifiSetupManager: Could not connect. Characteristic is not valid";
-        return;
-    }
-
-    QVariantMap request;
-    request.insert("c", static_cast<int>(WirelessServiceCommandStartAccessPoint));
-    QVariantMap parameters;
-    parameters.insert("e", ssid);
-    parameters.insert("p", password);
-    request.insert("p", parameters);
-
-    streamData(request);
-}
 
 void WirelessSetupManager::disconnectWirelessNetwork()
 {
     qDebug() << "WifiSetupManager: Disconnect wireless network";
 
-    if (!m_wifiService) {
+    /*if (!m_wifiService) {
         qWarning() << "WifiSetupManager: Could not disconnect wireless network. Service not valid";
         return;
-    }
+    }*/
 
     QLowEnergyCharacteristic ssidCharacteristic = m_wifiService->characteristic(wifiCommanderCharacteristicUuid);
-    if (!ssidCharacteristic.isValid()) {
+    /*if (!ssidCharacteristic.isValid()) {
         qWarning() << "WifiSetupManager: Could not disconnect wireless ssid. Characteristic is not valid";
         return;
-    }
+    }*/
     m_accessPoints->clearModel();
 
     QVariantMap request;
@@ -482,10 +492,10 @@ void WirelessSetupManager::setWirelessEnabled(bool wirelessEnabled)
 void WirelessSetupManager::streamData(const QVariantMap &request)
 {
     QLowEnergyCharacteristic characteristic = m_wifiService->characteristic(wifiCommanderCharacteristicUuid);
-    if (!characteristic.isValid()) {
+    /*if (!characteristic.isValid()) {
         qWarning() << "WifiSetupManager: WirelessService: Wireless commander characteristic not valid";
         return;
-    }
+    }*/
 
     qDebug() << "Request: "<< request;
     QByteArray data = QJsonDocument::fromVariant(request).toJson(QJsonDocument::Compact) + '\n';
