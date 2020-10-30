@@ -334,6 +334,8 @@ ApplicationWindow {
                                             : "../images/wifi-0.svg"
 
                             onClicked: {
+                                ssidTextField.text = ""
+                                passwordTextField.text = ""
                                 addNetwork = false
                                 currentCount++;
                                 print("Connect to ", model.ssid, " --> ", model.macAddress)
