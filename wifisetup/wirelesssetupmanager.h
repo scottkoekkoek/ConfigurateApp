@@ -183,7 +183,6 @@ public:
     Q_INVOKABLE void enableNetworking(bool enable);
     Q_INVOKABLE void enableWireless(bool enable);
     Q_INVOKABLE void connectWirelessNetwork(const QString &ssid, const QString &password = QString());
-    Q_INVOKABLE void startAccessPoint(const QString &ssid, const QString &password);
     Q_INVOKABLE void disconnectWirelessNetwork();
     Q_INVOKABLE void pressPushButton();
 

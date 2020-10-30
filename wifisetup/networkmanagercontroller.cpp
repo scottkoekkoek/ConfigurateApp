@@ -75,7 +75,6 @@ void NetworkManagerController::connectDevice()
         qDebug() << "Could not connect to device. There is no device info for" << m_bluetoothDeviceInfo->name() << m_bluetoothDeviceInfo->address();
         return;
     }
-
     m_wirelessSetupManager = new WirelessSetupManager(m_bluetoothDeviceInfo->getBluetoothDeviceInfo(), this);
     emit managerChanged();
     m_wirelessSetupManager->connectDevice();
