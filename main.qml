@@ -65,7 +65,7 @@ ApplicationWindow {
             }
         }
         onDataChanged: {
-            print("Veranderd")
+            print("Changed data")
         }
     }
 
@@ -74,10 +74,8 @@ ApplicationWindow {
         onInitializedChanged: {
             print("Start onInitializedChanged");
             print("initialized changed", networkManager.manager.initialized)
-            // Als ik bij volgende device ben, dan zet wireless van BluetoothDeviceInfo
-            // Als
             print("Busy: ", busy);
-            if (networkManager.manager.initialized /*&& connectingToWiFiView.running*/) {
+            if (networkManager.manager.initialized) {
                 if(busy) {
                     print("Verbonden!");
                     print("AccesPoint Avaiable: ", networkManager.manager.accessPointModeAvailable);
@@ -91,7 +89,7 @@ ApplicationWindow {
                         print("Ultieme test", networkManager.bluetoothDeviceInfo.ipAddress)
                     }
                     else{
-                        print("Counter gaat --")
+                        print("Counter go one back")
                         selectedCount--;
                     }
                 }
@@ -104,18 +102,18 @@ ApplicationWindow {
                 }
             } else {
                 if (busy){
-                    print("Connectie is gesloten");
-                    print("Index ervoor: ",networkManager.deviceIndex);
+                    print("Connectie is closed");
+                    print("Index before: ",networkManager.deviceIndex);
                     networkManager.deviceIndex = networkManager.deviceIndex + 1;
                     if (discovery.deviceInfos.count <= networkManager.deviceIndex){
-                        print("Klaar! uit init");
+                        print("finished! out init");
                         busy = false
                         if(connectingToWiFiView.running){
                             print("++3")
                             swipeView.currentIndex++;
                         }
                     }
-                    print("Index erna: ",networkManager.deviceIndex);
+                    print("Index after: ",networkManager.deviceIndex);
                     networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
                     networkManager.connectDevice();
                     currentCount++;
@@ -158,15 +156,12 @@ ApplicationWindow {
             print("ConnectingToWifiView: ", connectingToWiFiView)
             print("Vanaf nu ++")
             if (swipeView.currentItem === connectingToWiFiView) {
-                print("Komt hij hier?2")
                 print("network status: ", networkManager.manager.wirelessStatus)
-                //while(networkManager.manager.wirelessStatus !== WirelessSetupManager.WirelessStatusFailed || swipeView.currentIndex !== 5){
                 if (networkManager.manager.wirelessStatus === WirelessSetupManager.WirelessStatusActivated) {
                     print("Volgende 4");
                     print("++5")
                     swipeView.currentIndex++;
                 }
-                //}
 
                 if(networkManager.manager.wirelessStatus === 12) {
                     print("Hij komt hier3")
@@ -233,7 +228,6 @@ ApplicationWindow {
                     }
                     return 4;
                 case 4:
-                    networkManager.manager.disconnectWirelessNetwork()
                     for(index = 0 ; index < discovery.deviceInfos.count ; index++){
                         if(discovery.deviceInfos.get(index).selected){
                             selectedCount++;
@@ -242,23 +236,19 @@ ApplicationWindow {
                     return 4;
                 case 5:
                     if (networkManager.manager.wirelessStatus < WirelessSetupManager.WirelessStatusConfig) {
-                        print("hoi");
                         return 5;
                     }
-                    print("Connectie gaat sluiten");
+                    print("Connectie is closing");
                     busy = true;
                     if(connectingToWiFiView.running && networkManager.manager.wirelessStatus === WirelessSetupManager.WirelessStatusActivated){
                         networkManager.manager.disconnectDevice();
                     }
-                    print("Hij komt hier")
                     while(discovery.deviceInfos.count > count){
-                        print("Komt hij hier ook?")
                         if(!discovery.deviceInfos.get(count).selected){
 
                             print("remove item ", count)
                             discovery.deviceInfos.removeBluetoothDeviceInfo(count)
                             print("end removing")
-                            //connectView.discovery.deviceInfos.remove(networkManager.deviceIndex)
                         }
                         count++
                     }
@@ -437,33 +427,20 @@ ApplicationWindow {
                             onClicked: {
                                 if (d.currentAP) {
                                     connectingToWiFiView.text = qsTr("Connecting the W160x module to %1").arg(d.currentAP.ssid);
-                                    print("Er is een netwerk die nu disconnect")
-                                    //networkManager.manager.disconnectWirelessNetwork()
                                     networkManager.manager.connectWirelessNetwork(d.currentAP.ssid, passwordTextField.text)
                                     sidd = d.currentAP.ssid;
                                     password = passwordTextField.text;
 
                                 } else {
                                     connectingToWiFiView.text = qsTr("Opening access point \"%1\" on the W160x module.").arg(ssidTextField.text);
-                                    print("Er is een netwerk die nu disconnect")
-                                    //networkManager.manager.disconnectWirelessNetwork()
                                     networkManager.manager.connectWirelessNetwork(ssidTextField.text, passwordTextField.text)
                                     sidd = ssidTextField.text;
                                     password = passwordTextField.text;
-                                    //swipeView.currentIndex = 6
                                 }
 
                                 connectingToWiFiView.buttonText = "";
                                 connectingToWiFiView.running = true
 
-
-                                /*if(d.currentAP && !(networkManager.manager.currentConnection.hostAddress == NULL))
-                                {
-                                    if (networkManager.manager.currentConnection.hostAddress.length != 0){
-                                        networkManager.bluetoothDeviceInfo.ipAddress = networkManager.manager.currentConnection.hostAddress;
-                                    }
-                                        
-                                }*/
                                 print("++9")
                                 swipeView.currentIndex++
                             }

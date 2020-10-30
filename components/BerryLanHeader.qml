@@ -89,7 +89,6 @@ ColumnLayout {
                 print("Device with the index ", networkManager.deviceIndex, " is the first WAMM to connect")
                 networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
                 networkManager.connectDevice();
-                //networkManager.manager.disconnectWirelessNetwork()
                 swipeView.currentIndex++;
             }
         }

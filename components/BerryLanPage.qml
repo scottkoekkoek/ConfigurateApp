@@ -91,7 +91,7 @@ Page {
                     discovery.deviceInfos.clearModel()
                     networkManager.deviceIndex = 0
                     swipeView.currentIndex = 0
-                    print("Counter gaat naar 0")
+                    print("Counter go to 0")
                     selectedCount == 0
                }
             }

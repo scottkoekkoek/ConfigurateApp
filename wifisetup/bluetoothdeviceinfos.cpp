@@ -60,24 +60,6 @@ QVariant BluetoothDeviceInfos::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-//bool BluetoothDeviceInfos::setData(const QModelIndex &index, const QVariant &value, int role /*= Qt::EditRole*/)
-//{
-//    qDebug() << "Stap 1";
-//    if (index.isValid() /*&& role == Qt::EditRole*/) {
-//        qDebug() << "Stap 2";
-//        BluetoothDeviceInfo *deviceInfo = m_deviceInfos.at(index.row());
-//        if(role == BluetoothDeviceInfoRoleSelected){
-//           qDebug() << "Stap 3";
-//           deviceInfo->setSelected(value.toBool());
-//        } else if(role == NetwerkInfoIPAddress){
-//            qDebug() << "Stap 4";
-//            deviceInfo->setIpAddress(value.toString());
-//        }
-//        emit dataChanged(index, index, {role});
-//        return true;
-//    }
-//    return false;
-//}
 
 bool BluetoothDeviceInfos::setData(const QModelIndex &index, const QVariant &value, int role)
 {
@@ -107,11 +89,6 @@ int BluetoothDeviceInfos::count() const
     return m_deviceInfos.count();
 }
 
-/*Qt::ItemFlags BluetoothDeviceInfos::flags(const QModelIndex &index) const
-{
-    qDebug() << "Flag";
-   return Qt::ItemIsEditable | BluetoothDeviceInfos::flags(index);
-}*/
 
 BluetoothDeviceInfo *BluetoothDeviceInfos::get(int index) const
 {
