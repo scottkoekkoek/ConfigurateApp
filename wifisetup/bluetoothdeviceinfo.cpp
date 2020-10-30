@@ -31,7 +31,7 @@ BluetoothDeviceInfo::BluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo)
 {
     m_deviceInfo = deviceInfo;
     selected_ = false;
-    ipAddress_ = "";
+    //ipAddress_ = "";
 }
 
 QString BluetoothDeviceInfo::address() const
@@ -47,7 +47,7 @@ QString BluetoothDeviceInfo::address() const
 
 QString BluetoothDeviceInfo::name() const
 {
-        return m_deviceInfo.name();
+    return m_deviceInfo.name();
 }
 
 bool BluetoothDeviceInfo::isLowEnergy() const
@@ -58,7 +58,6 @@ bool BluetoothDeviceInfo::isLowEnergy() const
 bool BluetoothDeviceInfo::selected()
 {
     return selected_;
-    emit selectedChanged();
 }
 
 void BluetoothDeviceInfo::setSelected(bool selected)
@@ -71,16 +70,16 @@ QString BluetoothDeviceInfo::ipAddress()
 {
     qDebug() << "ipAddresses(): " << ipAddress_;
     return ipAddress_;
-    emit ipAddressChanged();
 }
 
-void BluetoothDeviceInfo::setIpAddress(QString ipAddress)
+QString BluetoothDeviceInfo::setIpAddress(QString ipAddress)
 {
     qDebug() << "setIpAddress1: " << ipAddress;
     ipAddress_ = ipAddress;
     qDebug() << "setIpAddress: " << ipAddress_;
     emit ipAddressChanged();
     emit deviceChanged();
+    return ipAddress_;
 }
 
 bool BluetoothDeviceInfo::connectedNetwork()

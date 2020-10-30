@@ -42,6 +42,7 @@ public:
     QString name() const;
     QBluetoothAddress address() const;
     QString addressString() const;
+    QString ipAddress();
     bool connected() const;
     QString statusText() const;
 

@@ -50,6 +50,11 @@ QBluetoothAddress BluetoothDevice::address() const
     return m_deviceInfo.address();
 }
 
+QString BluetoothDevice::ipAddress()
+{
+    return ipAddress();
+}
+
 QString BluetoothDevice::addressString() const
 {
 #ifdef Q_OS_MAC

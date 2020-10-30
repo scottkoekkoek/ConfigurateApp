@@ -49,7 +49,7 @@ public:
     void setSelected(bool selected);
     QString ipAddress();
     bool connectedNetwork();
-    void setIpAddress(QString ipAddress);
+    QString setIpAddress(QString ipAddress);
 
     QBluetoothDeviceInfo getBluetoothDeviceInfo() const;
     void setBluetoothDeviceInfo(const QBluetoothDeviceInfo &deviceInfo);
