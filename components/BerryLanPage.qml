@@ -88,7 +88,11 @@ Page {
                         }
                         networkManager.manager.disconnectDevice()
                     }
-                    swipeView.currentIndex = 0;
+                    discovery.deviceInfos.clearModel()
+                    networkManager.deviceIndex = 0
+                    swipeView.currentIndex = 0
+                    print("Counter gaat naar 0")
+                    selectedCount == 0
                }
             }
         }
