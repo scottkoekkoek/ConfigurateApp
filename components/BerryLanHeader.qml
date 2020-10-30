@@ -35,7 +35,8 @@ ColumnLayout {
             visible: root.backButtonVisible
             onClicked:{
                 print("I go back from swipeview ", swipeView.currentIndex, " to swipeview ", swipeView.currentIndex - 1)
-                swipeView.currentIndex--
+                //swipeView.currentIndex--
+                root.backClicked()
             }
         }
 

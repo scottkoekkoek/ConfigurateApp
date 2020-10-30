@@ -55,5 +55,6 @@
         <file>translations/berrylan-nl_NL.qm</file>
         <file>images/red.svg</file>
         <file>images/green.svg</file>
+        <file>components/HelpPage.qml</file>
     </qresource>
 </RCC>

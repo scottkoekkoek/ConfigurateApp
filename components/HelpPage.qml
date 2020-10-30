@@ -8,12 +8,7 @@ Page {
         text: qsTr("About BerryLan")
         backButtonVisible: true
         onBackClicked: pageStack.pop()
-        nextButtonVisible: true
+        nextButtonVisible: false
         onNextClicked: pageStack.pop()
-    }
-
-    WebView {
-        anchors.fill: parent
-        url: "https://www.berrylan.app/faq.html"
     }
 }

@@ -208,7 +208,7 @@ ApplicationWindow {
 
             selectAllButtonVisible: swipeView.currentIndex === 1
 
-            onHelpClicked: swipeView.currentIndex++
+            onHelpClicked: pageStack.push(Qt.resolvedUrl("components/HelpPage.qml"))
 
             step: {
                 switch (swipeView.currentIndex) {
