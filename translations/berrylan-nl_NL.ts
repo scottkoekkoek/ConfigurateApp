@@ -193,7 +193,7 @@
     </message>
     <message>
         <source>select all</source>
-        <translation>alles selecteren</source>
+        <translation>alles selecteren</translation>
     </message>
     <message>
         <source>next</source>
