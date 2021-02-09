@@ -63,6 +63,7 @@ bool BluetoothDeviceInfo::selected()
 void BluetoothDeviceInfo::setSelected(bool selected)
 {
     selected_ = selected;
+
     emit selectedChanged();
 }
 

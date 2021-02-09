@@ -126,6 +126,7 @@ void BluetoothDeviceInfos::removeBluetoothDeviceInfo(int index)
     beginRemoveRows(QModelIndex(), index, index);
     removeRow(index, QModelIndex());
     endRemoveRows();
+    qDebug() << "Delete one row";
 
     emit countChanged();
 }
@@ -136,6 +137,7 @@ void BluetoothDeviceInfos::clearModel()
     qDeleteAll(m_deviceInfos);
     m_deviceInfos.clear();
     endResetModel();
+    qDebug() << "Delete everything";
     emit countChanged();
 }
 
