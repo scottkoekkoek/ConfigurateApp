@@ -45,7 +45,7 @@ ColumnLayout {
         Button {
             id: selectAll
             text: qsTr("select all")
-            visible: root.selectAllButtonVisible
+            visible: root.selectAllButtonVisible && discovery.deviceInfos.count > 0
             onClicked:{
                     //Set all the devices on selected true.
                     for (index=0; index < discovery.deviceInfos.count ; index++){
@@ -77,15 +77,15 @@ ColumnLayout {
         Button {
             id: next
             text: qsTr("next")
-            visible: root.nextButtonVisible
+            visible: root.nextButtonVisible && discovery.deviceInfos.count > 0
             onClicked:{
                 //Search the first selected device to connect.
                 print("deviceindex = ", networkManager.deviceIndex)
-                print("Selected = ", discovery.deviceInfos.get(networkManager.deviceIndex).selected)
+                //print("Selected = ", discovery.deviceInfos.get(networkManager.deviceIndex).selected)
                 while(!discovery.deviceInfos.get(networkManager.deviceIndex).selected){
-                    if(discovery.deviceInfos.get(networkManager.deviceIndex).selected !== NULL){
+                    //if(discovery.deviceInfos.get(networkManager.deviceIndex).selected !== NULL){
                         networkManager.deviceIndex = networkManager.deviceIndex + 1;
-                    }
+                    //}
                 }
                 print("Device with the index ", networkManager.deviceIndex, " is the first WAMM to connect")
                 networkManager.bluetoothDeviceInfo = discovery.deviceInfos.get(networkManager.deviceIndex);
