@@ -40,10 +40,27 @@ Page {
             step: root.step
         }
         Label {
-            visible: swipeView.currentIndex == 6
+            visible: swipeView.currentIndex == 6 && selectedCount != discovery.deviceInfos.count
             Layout.fillWidth: true
             Layout.margins: app.margins
-            text: "All the "+selectedCount+" Wamm(s) are configurated!"
+            text: qsTr("These Wamm(s) are not configurated!").arg(selectedCount)
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            font.pixelSize: app.largeFont
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    clipBoard.text = networkManager.manager.currentConnection.hostAddress
+                    parent.ToolTip.show(qsTr("IP address copied to clipboard."), 2000)
+                }
+            }
+        }
+        Label {
+            visible: swipeView.currentIndex == 6 && selectedCount == discovery.deviceInfos.count
+            Layout.fillWidth: true
+            Layout.margins: app.margins
+            text: qsTr("All the Wamm(s) are configurated!").arg(selectedCount)
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             font.pixelSize: app.largeFont
             font.bold: true
