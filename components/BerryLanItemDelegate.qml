@@ -45,17 +45,12 @@ ItemDelegate {
                 id: checkbox
                 visible: swipeView.currentIndex == 1
                 onClicked:{
+                    print("checkstate from index ", index, " is ", checkState)
                     discovery.deviceInfos.set(index, checkState)
                     print("After setting selected is the state: ", discovery.deviceInfos.get(index).selected)
                 }
             }
-            Label {
-                visible: swipeView.currentIndex == 6
-                Layout.fillWidth: true
-                text: "placeholder" //ipAddress //discovery.deviceInfos.get(index) && discovery.deviceInfos.get(index).connectedNetwork ? discovery.deviceInfos.get(index).ipAddress : "Not connected"
-                font.pixelSize: app.largeFont
-                elide: Text.ElideRight
-            }
+il
         }
 
         //Horizontale line between the bluetooth devices in the list. To create for each device a box.
