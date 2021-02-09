@@ -19,7 +19,7 @@ Page {
             visible: true
             Layout.fillWidth: true
             Layout.margins: app.margins
-            text: "Version: 1.0.0"
+            text: qsTr("Version: 1.0.0")
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             font.pixelSize: app.largeFont
             font.bold: false
@@ -44,7 +44,7 @@ Page {
             visible: true
             Layout.fillWidth: true
             Layout.margins: app.margins
-            text: "Based on open source app Nymea"
+            text: qsTr("Based on open source app Nymea")
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             font.pixelSize: app.largeFont
             font.bold: true
