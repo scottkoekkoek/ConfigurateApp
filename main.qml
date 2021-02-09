@@ -96,15 +96,19 @@ ApplicationWindow {
                 else {
                     print("++swipeview ", swipeView.currentIndex)
                     if(swipeView.currentIndex == 2 || connectingToWiFiView.running){
+                        discovery.deviceInfos.removeBluetoothDeviceInfo(networkManager.deviceIndex);
                         print("++2")
                         swipeView.currentIndex++;
                     }
                 }
             } else {
-                if (busy){
+                //if (busy){
                     print("Connectie is closed");
+                    discovery.deviceInfos.removeBluetoothDeviceInfo(networkManager.deviceIndex)
                     print("Index before: ",networkManager.deviceIndex);
                     networkManager.deviceIndex = networkManager.deviceIndex + 1;
+                    print("Count: ", discovery.deviceInfos.count);
+                    print("Index: ", networkManager.deviceIndex)
                     if (discovery.deviceInfos.count <= networkManager.deviceIndex){
                         print("finished! out init");
                         busy = false
@@ -118,10 +122,10 @@ ApplicationWindow {
                     networkManager.connectDevice();
                     currentCount++;
 
-                }
-                else{
+                //}
+                /*else{
                     swipeView.currentIndex = 0;
-                }
+                }*/
             }
         }
         onConnectedChanged: {
@@ -132,7 +136,7 @@ ApplicationWindow {
                     busy = true;
                 }
                 else{
-                    swipeView.currentIndex = 0;
+                    //swipeView.currentIndex = 0;
                 }
             }
         }
@@ -474,6 +478,7 @@ ApplicationWindow {
                     ColumnLayout {
                         anchors.fill: parent
 
+
                         ListView {
                             id: connectView
                             height: swipeView.height
@@ -487,7 +492,7 @@ ApplicationWindow {
                             delegate: BerryLanItemDelegate {
                                 width: parent.width
                                 text: name
-                                iconSource: "../images/green.svg" //ipaddress != "" ? "../images/green.svg" : "../images/red.svg"
+                                iconSource: "../images/bluetooth.svg"
                             }
                         }                    
                     }
