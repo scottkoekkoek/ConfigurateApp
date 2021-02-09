@@ -2,6 +2,48 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="nl_NL">
 <context>
+    <name>BerryLanHeader</name>
+    <message>
+        <source>back</source>
+        <translation type="unfinished">terug</translation>
+    </message>
+    <message>
+        <source>select all</source>
+        <translation type="unfinished">alles selecteren</translation>
+    </message>
+    <message>
+        <source>next</source>
+        <translation type="unfinished">volgende</translation>
+    </message>
+</context>
+<context>
+    <name>BerryLanPage</name>
+    <message>
+        <source>Test</source>
+        <translation type="vanished">Test geslaagd</translation>
+    </message>
+    <message>
+        <source>IP address copied to clipboard.</source>
+        <translation type="unfinished">IP-adres gekopieerd naar het klembord</translation>
+    </message>
+    <message>
+        <source>All the %1 Wamm(s) are configurated!</source>
+        <translation type="obsolete">Test</translation>
+    </message>
+    <message>
+        <source>%1 Wamm(s) are not configurated!</source>
+        <translation type="obsolete">%1 Wamm(s) zijn nog niet geconfigureerd!</translation>
+    </message>
+    <message>
+        <source>These Wamm(s) are not configurated!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All the Wamm(s) are configurated!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BluetoothDevice</name>
     <message>
         <source>Connecting to %1...</source>
@@ -32,34 +74,42 @@
     <name>BluetoothDeviceMock</name>
     <message>
         <source>Connecting to %1...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verbinden met %1...</translation>
     </message>
     <message>
         <source>Connected to %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verbonden met %1</translation>
     </message>
     <message>
         <source>Discovering services of %1...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Scannen voor services van %1</translation>
     </message>
     <message>
         <source>%1 connected and discovered.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 verbonden.</translation>
     </message>
     <message>
         <source>Disconnecting from %1...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verbinding verbreken met %1</translation>
     </message>
     <message>
         <source>%1 disconnected.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 verbinding verbroken.</translation>
     </message>
 </context>
 <context>
     <name>HelpPage</name>
     <message>
-        <source>About BerryLan</source>
-        <translation></translation>
+        <source>About CLB Config</source>
+        <translation>Over CLB Config</translation>
+    </message>
+    <message>
+        <source>Version: 1.0.0</source>
+        <translation>Versie: 1.0.0</translation>
+    </message>
+    <message>
+        <source>Based on open source app Nymea</source>
+        <translation>Gebasseerd op een open source app van Nymea</translation>
     </message>
 </context>
 <context>
@@ -129,11 +179,11 @@
     </message>
     <message>
         <source>Bluetooth is not available on this device. This application requires a Bluetooth connection to function properly. </source>
-        <translation>Bluetooth is niet beschikbaar op dit apparaat. Deze applicatie heeft een werkende Bluetooth connenctie nodig om te kunnen functioneren. </translation>
+        <translation type="vanished">Bluetooth is niet beschikbaar op dit apparaat. Deze applicatie heeft een werkende Bluetooth connenctie nodig om te kunnen functioneren. </translation>
     </message>
     <message>
         <source>Bluetooth is disabled. Please enable Bluetooth on the device on order to use this application.</source>
-        <translation>Bluetooth is uitgeschakeld. Zet Bluetooth aan op het apparaat om de app te kunnen gebruiken. </translation>
+        <translation type="vanished">Bluetooth is uitgeschakeld. Zet Bluetooth aan op het apparaat om de app te kunnen gebruiken. </translation>
     </message>
     <message>
         <source>Searching for modules</source>
@@ -141,7 +191,7 @@
     </message>
     <message>
         <source>Connecting to the W160x module.</source>
-        <translation>Verbinden met de W160x module.</translation>
+        <translation type="vanished">Verbinden met de W160x module.</translation>
     </message>
     <message>
         <source>OK</source>
@@ -149,35 +199,39 @@
     </message>
     <message>
         <source>Connecting the W160x Module to %1</source>
-        <translation>Module verbind met %1</translation>
+        <translation type="vanished">Module verbind met %1</translation>
     </message>
     <message>
         <source>Sorry, an unexpected error happened.</source>
-        <translation type="unfinished">Er is een onverwachte fout opgetreden</translation>
+        <translation>Er is een onverwachte fout opgetreden</translation>
     </message>
     <message>
         <source>Add Network</source>
-        <translation type="unfinished">Netwerk toevoegen</translation>
+        <translation>Netwerk toevoegen</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Wachtwoord</translation>
+        <translation>Wachtwoord</translation>
     </message>
     <message>
         <source>Opening access point &quot;%1&quot; on the W160x Module</source>
-        <translation type="unfinished">Verbinding maken op de W160x</translation>
+        <translation type="vanished">Verbinding maken op de W160x</translation>
+    </message>
+    <message>
+        <source>All the %1 Wamm(s) are configurated!</source>
+        <translation type="vanished">Test</translation>
     </message>
     <message>
         <source>SSID: %1</source>
-        <translation type="unfinished">SSID: %1</translation>
+        <translation type="vanished">SSID: %1</translation>
     </message>
     <message>
         <source>IP Address: %1</source>
-        <translation type="unfinished">IP-adres: %1</translation>
+        <translation type="vanished">IP-adres: %1</translation>
     </message>
     <message>
         <source>IP address copied to clipboard.</source>
@@ -185,19 +239,47 @@
     </message>
     <message>
         <source>Close access point</source>
-        <translation type="unfinished">Netwerk sluiten</translation>
+        <translation type="vanished">Netwerk sluiten</translation>
     </message>
     <message>
         <source>back</source>
-        <translation>terug</translation>
+        <translation type="vanished">terug</translation>
     </message>
     <message>
         <source>select all</source>
-        <translation>alles selecteren</translation>
+        <translation type="vanished">alles selecteren</translation>
     </message>
     <message>
         <source>next</source>
-        <translation>volgende</translation>
+        <translation type="vanished">volgende2</translation>
+    </message>
+    <message>
+        <source>BerryLan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bluetooth is not available on this device. This application requires a Bluetooth connection to function properly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bluetooth is disabled. Please enable Bluetooth on the device on order to use this application. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting to the W160x module</source>
+        <translation>Verbinden met de W160x module</translation>
+    </message>
+    <message>
+        <source>Connecting the W160x module to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening access point &quot;%1&quot; on the W160x module.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hoi</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

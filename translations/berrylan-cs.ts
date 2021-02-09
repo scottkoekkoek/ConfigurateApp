@@ -2,10 +2,33 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="cs">
 <context>
+    <name>BerryLanHeader</name>
+    <message>
+        <source>back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>select all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>next</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BerryLanPage</name>
     <message>
-        <source>an open source tool by</source>
-        <translation></translation>
+        <source>IP address copied to clipboard.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>These Wamm(s) are not configurated!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All the Wamm(s) are configurated!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -65,22 +88,22 @@
 <context>
     <name>HelpPage</name>
     <message>
-        <source>About BerryLan</source>
-        <translation></translation>
+        <source>About CLB Config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version: 1.0.0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Based on open source app Nymea</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WirelessSetupManager</name>
     <message>
         <source>Invalid value.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>There is no networkmanager available on the device.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>There is no wireless device available on the device.</source>
         <translation></translation>
     </message>
     <message>
@@ -96,12 +119,20 @@
         <translation></translation>
     </message>
     <message>
-        <source>The wireless networking is disabled on the device.</source>
-        <translation></translation>
+        <source>There is no networkmanager available on the module.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The networking is disabled on the device.</source>
-        <translation></translation>
+        <source>There is no wireless device available on the module.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The wireless networking is disabled on the module.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The networking is disabled on the module.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -111,15 +142,7 @@
         <translation></translation>
     </message>
     <message>
-        <source>Sorry, the password is wrong.</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Try again</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Devices</source>
         <translation></translation>
     </message>
     <message>
@@ -139,40 +162,11 @@
         <translation></translation>
     </message>
     <message>
-        <source>Bluetooth doesn&apos;t seem to be available on this device. BerryLan requires a working Bluetooth connection.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Bluetooth seems to be disabled. Please enable Bluetooth on your device in order to use BerryLan.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Searching for your
-Raspberry Pi</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Connecting to your Raspberry Pi</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <source>Connecting the Raspberry Pi to %1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Thanks for using BerryLan!</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Sorry, an unexpected error happened.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open Access Point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -184,23 +178,47 @@ Raspberry Pi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Opening access point &quot;%1&quot; on the Raspberry Pi</source>
+        <source>Invalid password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Access point name: %1</source>
+        <source>Modules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>IP Address: %1</source>
+        <source>Bluetooth is not available on this device. This application requires a Bluetooth connection to function properly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bluetooth is disabled. Please enable Bluetooth on the device on order to use this application. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Searching for modules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting to the W160x module</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting the W160x module to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening access point &quot;%1&quot; on the W160x module.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hoi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>IP address copied to clipboard.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close access point</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
