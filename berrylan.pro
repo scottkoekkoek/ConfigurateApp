@@ -31,7 +31,7 @@ defineTest(copyToDestDir) {
         file ~= s,/,\\,g
         file ~= s,/,\\,g
 
-        QMAKE_POST_LINK += $$QMAKE_COPY_DIR $$shell_quote($$file) $$shell_quote($$dir) $$escape_expand(\\n\\t)
+        QMAKE_POST_LINK += $$QMAKE_COPY $$shell_quote($$file) $$shell_quote($$dir) $$escape_expand(\\n\\t)
     }
 
     export(QMAKE_POST_LINK)
