@@ -18,6 +18,25 @@ APP_REVISION=$$member(VERSION_INFO, 1)
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+# copies the given files to the destination directory
+defineTest(copyToDestDir) {
+    files = $$1
+    dir = $$2
+    # replace slashes in destination path for Windows
+    dir ~= s,/,\\,g
+    dir ~= s,/,\\,g
+
+    for(file, files) {
+        # replace slashes in source path for Windows
+        file ~= s,/,\\,g
+        file ~= s,/,\\,g
+
+        QMAKE_POST_LINK += $$QMAKE_COPY_DIR $$shell_quote($$file) $$shell_quote($$dir) $$escape_expand(\\n\\t)
+    }
+
+    export(QMAKE_POST_LINK)
+}
+
 SOURCES += \
     clipboardhelper.cpp \
     main.cpp \
@@ -92,7 +111,8 @@ android: {
         android/gradlew.bat
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-    QMAKE_POST_LINK += cp $$PWD/version.txt $$OUT_PWD/
+    copyToDestDir($$PWD/version.txt, $$OUT_PWD)
+    #QMAKE_POST_LINK += cp $$PWD/version.txt $$OUT_PWD/
 }
 
 ios: {

@@ -52,7 +52,7 @@ QBluetoothAddress BluetoothDevice::address() const
 
 QString BluetoothDevice::ipAddress()
 {
-    return ipAddress();
+    return NULL; //return ipAddress();
 }
 
 QString BluetoothDevice::addressString() const

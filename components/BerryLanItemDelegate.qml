@@ -50,7 +50,6 @@ ItemDelegate {
                     print("After setting selected is the state: ", discovery.deviceInfos.get(index).selected)
                 }
             }
-il
         }
 
         //Horizontale line between the bluetooth devices in the list. To create for each device a box.
