@@ -111,8 +111,12 @@ android: {
         android/gradlew.bat
 
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-    copyToDestDir($$PWD/version.txt, $$OUT_PWD)
-    #QMAKE_POST_LINK += cp $$PWD/version.txt $$OUT_PWD/
+	equals(QMAKE_HOST.os, Windows) {
+	    copyToDestDir($$PWD/version.txt, $$OUT_PWD)
+	}
+	else {
+	    QMAKE_POST_LINK += cp $$PWD/version.txt $$OUT_PWD/
+	}
 }
 
 ios: {
