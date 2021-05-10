@@ -145,15 +145,15 @@ void WirelessSetupManagerMock::performWifiScan()
 {
 }
 
-void WirelessSetupManagerMock::enableNetworking(bool enable)
+void WirelessSetupManagerMock::enableNetworking(bool /*enable*/)
 {
 }
 
-void WirelessSetupManagerMock::enableWireless(bool enable)
+void WirelessSetupManagerMock::enableWireless(bool /*enable*/)
 {
 }
 
-void WirelessSetupManagerMock::connectWirelessNetwork(const QString &ssid, const QString &password)
+void WirelessSetupManagerMock::connectWirelessNetwork(const QString &/*ssid*/, const QString &/*password*/)
 {
     m_currentConnection = m_accessPoints->get(0);
     m_currentConnection->setHostAddress("192.168.0.42");
@@ -167,7 +167,7 @@ void WirelessSetupManagerMock::connectWirelessNetwork(const QString &ssid, const
     });
 }
 
-void WirelessSetupManagerMock::startAccessPoint(const QString &ssid, const QString &password)
+void WirelessSetupManagerMock::startAccessPoint(const QString &/*ssid*/, const QString &/*password*/)
 {
     m_currentConnection = m_accessPoints->get(0);
     m_currentConnection->setHostAddress("192.168.0.42");

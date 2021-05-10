@@ -30,7 +30,7 @@ defineTest(copyToDestDir) {
         # replace slashes in source path for Windows
         file ~= s,/,\\,g
         file ~= s,/,\\,g
-
+		dir = $$dir\\version.txt
         QMAKE_POST_LINK += $$QMAKE_COPY $$shell_quote($$file) $$shell_quote($$dir) $$escape_expand(\\n\\t)
     }
 
